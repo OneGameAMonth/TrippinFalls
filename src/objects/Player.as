@@ -17,6 +17,8 @@ package objects
 		private var _speed:int;
 		private var _isJumping:Boolean;
 		private var _isRising:Boolean;
+		private var _jumpTimer:int;
+		private var _maxJumpTimer:int;
 		private var _jumpVelocity:int;
 		private var _jumpHeight:int;
 		private var _maxJumpHeight:int;
@@ -31,7 +33,11 @@ package objects
 			idleImage = new Image(idleFrames);
 			
 			_speed = 5;
-			_jumpVelocity = -3
+			_jumpVelocity = -1;
+			_jumpHeight = 0;
+			_maxJumpHeight = 16;
+			_jumpTimer = 0;
+			_maxJumpTimer = 2;
 			
 			this.x = 100;
 			this.y = 100;
@@ -128,7 +134,7 @@ package objects
 		
 		private function jump():void
 		{
-			_jumpVelocity = -3;
+			_jumpVelocity = -1;
 			_isJumping = true;
 		}
 		
@@ -141,23 +147,22 @@ package objects
 		{
 			if (_isJumping == true)
 			{
-				idleImage.y += _jumpVelocity;
-				_jumpHeight += _jumpVelocity;
-				if (_jumpHeight < -_jumpHeight)
+				_jumpTimer += 1;
+				if (_jumpTimer >= _maxJumpTimer) 
 				{
-					_isRising = false;
-				}
-				if (_isRising = true)
-				{
-					_jumpVelocity -= _jumpVelocity / 2;
-				}
-				else if (_isRising = false)
-				{
-					_jumpVelocity
-				}
-				if (_jumpHeight == 0)
-				{
-					land();
+					_jumpTimer = 0;
+					idleImage.y += _jumpVelocity;
+					_jumpHeight += _jumpVelocity;
+					if (_jumpHeight < -_maxJumpHeight)
+					{
+						_jumpVelocity = - _jumpVelocity;
+						_isRising = false;
+					}
+					if (_jumpHeight >= 0 && _isRising == false)
+					{
+						_jumpHeight = 0;
+						land();
+					}
 				}
 			}
 		}
