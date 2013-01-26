@@ -33,10 +33,10 @@ package objects
 			idleImage = new Image(idleFrames);
 			
 			_speed = 5;
-			_jumpVelocity = -1;
+			_jumpVelocity = -5;
 			_jumpHeight = 0;
-			_maxJumpHeight = 16;
-			_jumpTimer = 0;
+			_maxJumpHeight = 32;
+			_jumpTimer = 1;
 			_maxJumpTimer = 2;
 			
 			this.x = 100;
@@ -134,13 +134,13 @@ package objects
 		
 		private function jump():void
 		{
-			_jumpVelocity = -1;
 			_isJumping = true;
 		}
 		
 		private function land():void
 		{
 			_isJumping = false;
+			_jumpVelocity = -_jumpVelocity;
 		}
 		
 		private function applyJumpForce():void
@@ -167,5 +167,4 @@ package objects
 			}
 		}
 	}
-
 }

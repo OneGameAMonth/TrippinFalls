@@ -5,6 +5,7 @@ package  {
 	import flash.display.MovieClip;
 	import objects.Platform;
 	import objects.Player;
+	import objects.GameTimer;
 	import starling.core.*
 	import starling.display.Sprite;
 	import starling.textures.*;
@@ -25,6 +26,9 @@ package  {
 			
 			var player:Player = new Player();
 			this.addChild(player);
+			
+			var timer:GameTimer = new GameTimer(1000000);
+			this.addChild(timer);
 			
 		}
 	}
