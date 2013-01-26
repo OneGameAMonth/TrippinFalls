@@ -12,10 +12,10 @@ package manager{
 	
 	public class Assets
 	{	
-		[Embed(source = "../../assets/img.xml", mimeType = "application/octet-stream")] 
+		[Embed(source = "../../assets/art/img.xml", mimeType = "application/octet-stream")] 
 		public static const AtlasXml:Class;
 		 
-		[Embed(source = "../../assets/img.png")] 
+		[Embed(source = "../../assets/art/img.png")] 
 		public static const AtlasTexture:Class;
 		
 		private static var _textures:Dictionary = new Dictionary();
