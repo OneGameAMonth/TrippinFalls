@@ -2,6 +2,7 @@ package  {
 
 	import objects.GameObject;
 	import flash.display.MovieClip;
+	import objects.Player;
 	import starling.core.*
 	import starling.display.Sprite;
 	import starling.textures.*;
@@ -13,6 +14,8 @@ package  {
 		
 		public function Game()
 		{
+			var player:Player = new Player();
+			this.addChild(player);
 
 		}
 	}
