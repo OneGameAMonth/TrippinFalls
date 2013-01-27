@@ -13,6 +13,7 @@ package objects
 	
 	import manager.Assets;
 	import Game;
+	import objects.Platform;
 	
 	public class Player extends GameObject
 	{	
@@ -21,6 +22,7 @@ package objects
 		private var _speed:int;
 		private var _isJumping:Boolean;
 		private var _isRising:Boolean;
+		private var _isDying:Boolean;
 		private var _jumpTimer:int;
 		private var _maxJumpTimer:int;
 		private var _jumpVelocity:int;
@@ -66,6 +68,7 @@ package objects
 			movePlayer();
 			applyJumpForce();
 			checkFloor();
+			checkForDeath();
 		}
 		
 		private function onKeyDown(e:KeyboardEvent):void
@@ -109,39 +112,42 @@ package objects
 		
 		private function movePlayer():void
 		{
-			if (_arrowKeys["up"] == true && _arrowKeys["down"] == false)
+			if (_isDying == false)
 			{
-				this.y -= _speed;
-				if (this.y < 24)
+				if (_arrowKeys["up"] == true && _arrowKeys["down"] == false)
 				{
-					this.y = 24;
+					this.y -= _speed;
+					if (this.y < 24)
+					{
+						this.y = 24;
+					}
 				}
-			}
-			else if (_arrowKeys["down"] == true && _arrowKeys["up"] == false)
-			{
-				this.y += _speed;
-				if (this.y > stage.stageHeight - this.height)
+				else if (_arrowKeys["down"] == true && _arrowKeys["up"] == false)
 				{
-					this.y = stage.stageHeight - this.height;
+					this.y += _speed;
+					if (this.y > stage.stageHeight - this.height)
+					{
+						this.y = stage.stageHeight - this.height;
+					}
 				}
-			}
-			if (_arrowKeys["left"] == true && _arrowKeys["right"] == false)
-			{
-				this.x -= _speed;
-				if (this.x < 0)
+				if (_arrowKeys["left"] == true && _arrowKeys["right"] == false)
 				{
-					this.x = 0;
+					this.x -= _speed;
+					if (this.x < 0)
+					{
+						this.x = 0;
+					}
 				}
-			}
-			else if (_arrowKeys["right"] == true && _arrowKeys["left"] == false)
-			{
-				this.x += _speed;
-				if (this.x > stage.stageWidth - this.width)
+				else if (_arrowKeys["right"] == true && _arrowKeys["left"] == false)
 				{
-					this.x = stage.stageWidth - this.width;	
+					this.x += _speed;
+					if (this.x > stage.stageWidth - this.width)
+					{
+						this.x = stage.stageWidth - this.width;	
+					}
 				}
+				updateStandRect();
 			}
-			updateStandRect();
 		}
 		
 		private function updateStandRect():void
@@ -189,13 +195,26 @@ package objects
 		
 		private function checkFloor():void
 		{
-			/*for (var i:int = 0; i < Platform.tiles.length; i++)
+			if (_isJumping == false)
 			{
-				if (Platform.tiles[i].containsPoint(standPoint))
+				var isStanding:Boolean = Platform.checkFloor(standPoint);
+				if (isStanding == true)
 				{
-					trace("WHOA");
+					//trace("YES");
 				}
-			}*/
+				else if (isStanding == false)
+				{
+					//trace("NO");
+				}
+			}
+		}
+		
+		private function checkForDeath():void
+		{
+			if (_isDying == true)
+			{
+				
+			}
 		}
 	}
 }

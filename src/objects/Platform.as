@@ -10,6 +10,7 @@ package objects
 	import starling.events.KeyboardEvent;
 	import starling.core.Starling;
 	import manager.Assets;
+	import flash.geom.Point;
 	
 	public class Platform extends GameObject
 	{
@@ -25,7 +26,7 @@ package objects
 		public var xCoord:int;
 		public var yCoord:int;
 		
-		public var platImageVec:Vector.<Image> = new Vector.<Image>;
+		public static var platImageVec:Vector.<Image> = new Vector.<Image>;
 		
 		public function Platform(t:String, unitsRight:int, unitsDown:int, layout:Array ) 
 		{
@@ -108,6 +109,20 @@ package objects
 			for (var i:int = 0; i < platImageVec.length; i++ )
 			{
 				if ( getBounds(platImageVec[i]).intersects(rec) ) { collision = true; };
+			}
+			return collision;
+		}
+		
+		public static function checkFloor(pos:Point):Boolean
+		{
+			var collision:Boolean = false;
+			for (var i:int = 0; i < platImageVec.length; i++)
+			{
+				var rec:Rectangle = new Rectangle(platImageVec[i].x, platImageVec[i].y, platImageVec[i].width, platImageVec[i].height);
+				if (rec.containsPoint(pos))
+				{
+					collision = true;
+				}
 			}
 			return collision;
 		}

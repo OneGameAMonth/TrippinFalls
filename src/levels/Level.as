@@ -1,7 +1,8 @@
 package levels
 {
 	import starling.display.Sprite;
-	
+	import objects.Player;
+	import objects.Platform;
 	
 	public class Level extends Sprite
 	{
@@ -13,9 +14,7 @@ package levels
 		
 		public function readyLevel():void
 		{
-			trace("HEY");
+			
 		}
-		
 	}
-
 }
