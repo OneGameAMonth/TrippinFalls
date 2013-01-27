@@ -38,6 +38,9 @@ package objects
 		{
 			var test:Boolean = false;
 			test = collisionRec.containsPoint( pnt );
+			if (isGoal) { 
+				//load next level
+			}
 			return test;
 		}
 		

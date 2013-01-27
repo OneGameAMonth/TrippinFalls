@@ -25,7 +25,7 @@ package levels
 			plats[6] = new Platform("carpet", 16, 8, layouts.square, true, 0);
 			plats[7] = new Platform("carpet", 2, 20, layouts.bigSquare, false, 1);
 			//last platform added does not appear
-			plats[3].addObstacle("dresser", 0, 0, true);
+			plats[3].addObstacle("dresser", 0, 2, true);
 			
 			initPlatforms();
 			
