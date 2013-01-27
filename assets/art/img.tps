@@ -22,7 +22,7 @@
         <key>dataFormat</key>
         <string>sparrow</string>
         <key>textureFileName</key>
-        <filename></filename>
+        <filename>img.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>ditherType</key>
@@ -111,7 +111,7 @@
             <enum type="AndEngine::MagFilter">MagLinear</enum>
         </struct>
         <key>dataFileName</key>
-        <filename></filename>
+        <filename>img.xml</filename>
         <key>mainExtension</key>
         <string></string>
         <key>forceIdenticalLayout</key>
@@ -141,7 +141,28 @@
         </struct>
         <key>fileList</key>
         <array>
+            <filename>swfs/Back_Idel.swf</filename>
+            <filename>swfs/Back_Jump.swf</filename>
+            <filename>swfs/Back_Walk.swf</filename>
+            <filename>swfs/Fall.swf</filename>
+            <filename>swfs/Front_Idel.swf</filename>
+            <filename>swfs/Front_Jump.swf</filename>
+            <filename>swfs/Front_Walk.swf</filename>
+            <filename>swfs/go button asset.png</filename>
+            <filename>swfs/Side jump.swf</filename>
+            <filename>swfs/Side_Idel.swf</filename>
+            <filename>swfs/Side_Jump.swf</filename>
+            <filename>swfs/Side_Walk.swf</filename>
+            <filename>swfs/stop button asset.png</filename>
+            <filename>pngs/stop button asset.png</filename>
+            <filename>pngs/tile.bmp</filename>
+            <filename>pngs/toilet.png</filename>
+            <filename>pngs/bed.png</filename>
+            <filename>pngs/bookcase.png</filename>
+            <filename>pngs/carpet.bmp</filename>
+            <filename>pngs/couch.png</filename>
             <filename>pngs/dresser.png</filename>
+            <filename>pngs/go button asset.png</filename>
             <filename>pngs/goal.png</filename>
             <filename>pngs/hatrack.png</filename>
             <filename>pngs/microwave.png</filename>
@@ -150,19 +171,6 @@
             <filename>pngs/player.png</filename>
             <filename>pngs/refrigerator.png</filename>
             <filename>pngs/sink.png</filename>
-            <filename>pngs/tile.bmp</filename>
-            <filename>pngs/toilet.png</filename>
-            <filename>pngs/bed.png</filename>
-            <filename>pngs/bookcase.png</filename>
-            <filename>pngs/carpet.bmp</filename>
-            <filename>pngs/couch.png</filename>
-            <filename>swfs/Back jump still.swf</filename>
-            <filename>swfs/Back walk.swf</filename>
-            <filename>swfs/Fall.swf</filename>
-            <filename>swfs/Front jump still.swf</filename>
-            <filename>swfs/Front walk.swf</filename>
-            <filename>swfs/Side jump still.swf</filename>
-            <filename>swfs/Side walk.swf</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

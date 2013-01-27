@@ -11,6 +11,7 @@ package objects
 	import starling.textures.TextureAtlas;
 	import starling.events.KeyboardEvent;
 	import starling.core.Starling;
+	import starling.display.MovieClip;
 	
 	import manager.Assets;
 	import Game;
@@ -35,14 +36,53 @@ package objects
 		public var standPoint:Point
 		public var currentLevel:Level;
 		
+		private var walkLeftMovie:MovieClip;
+		private var walkBackMovie:MovieClip;
+		private var walkForwardMovie:MovieClip;
+		private var walkRightMovie:MovieClip;
+		private var movieVector:Vector.<MovieClip>;
+		private var animationState:int;
+		private var newAnimationState:int;
+		private const WALK_FORWARD:int = 0;
+		private const WALK_BACK:int = 1;
+		private const WALK_RIGHT:int = 2;
+		private const WALK_LEFT:int = 3;
+		
+		
 		private var idleImage:Image;
 		
 		public function Player(xPos:int, yPos:int, cLevel:Level) 
 		{
 			var atlas:TextureAtlas = Assets.fetchTextureAtlas();
 			
-			var idleFrames:Texture = atlas.getTexture("player");
-			idleImage = new Image(idleFrames);
+			var rightFrames:Vector.<Texture> = atlas.getTextures("Side_Walk/000");
+			walkRightMovie = new MovieClip(rightFrames, 7);
+			walkRightMovie.loop = true;
+			
+			var leftFrames:Vector.<Texture> = atlas.getTextures("Side_Walk/000");
+			walkLeftMovie = new MovieClip(leftFrames, 7);
+			walkLeftMovie.scaleX = -1;
+			walkLeftMovie.loop = true;
+			
+			var forwardFrames:Vector.<Texture> = atlas.getTextures("Front_Walk/000");
+			walkForwardMovie = new MovieClip(forwardFrames, 6);
+			walkForwardMovie.loop = true;
+			
+			var backFrames:Vector.<Texture> = atlas.getTextures("Back_Walk/000");
+			walkBackMovie = new MovieClip(backFrames, 6);
+			walkBackMovie.loop = true;
+			
+			movieVector = new Vector.<MovieClip>();
+			movieVector[WALK_FORWARD] = walkForwardMovie;
+			movieVector[WALK_BACK] = walkBackMovie;
+			movieVector[WALK_RIGHT] = walkRightMovie;
+			movieVector[WALK_LEFT] = walkLeftMovie;
+			
+			animationState = WALK_FORWARD;
+			newAnimationState = WALK_FORWARD;
+			
+			/*var idleFrames:Texture = atlas.getTexture("player");
+			idleImage = new Image(idleFrames);*/
 			
 			currentLevel = cLevel;
 			
@@ -66,7 +106,7 @@ package objects
 			
 			standRect = new Rectangle(this.x, this.y + 32, 32, 32);
 			standPoint = new Point((standRect.x / 2), (standRect.y / 2));
-			addChild(idleImage);
+			addChild(movieVector[animationState]);
 			Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
 			Starling.current.stage.addEventListener(KeyboardEvent.KEY_UP, onKeyUp);
 		}
@@ -77,6 +117,21 @@ package objects
 			applyJumpForce();
 			checkFloor();
 			checkForDeath();
+			changeAnimation();
+		}
+		
+		private function changeAnimation():void
+		{
+			if (animationState != newAnimationState)
+			{
+				removeChild(movieVector[animationState]);
+				Starling.juggler.remove(movieVector[animationState]);
+				
+				animationState = newAnimationState;
+				addChild(movieVector[animationState]);
+				Starling.juggler.add(movieVector[animationState]);
+				
+			}
 		}
 		
 		private function onKeyDown(e:KeyboardEvent):void
@@ -131,14 +186,17 @@ package objects
 				if (_arrowKeys["up"] == true && _arrowKeys["down"] == false && move)
 				{
 					this.y -= _speed;
+					newAnimationState = WALK_BACK;
 					if (this.y < 24)
 					{
 						this.y = 24;
 					}
+					
 				}
 				else if (_arrowKeys["down"] == true && _arrowKeys["up"] == false && move)
 				{
 					this.y += _speed;
+					newAnimationState = WALK_FORWARD;
 					if (this.y > stage.stageHeight - this.height)
 					{
 						this.y = stage.stageHeight - this.height;
@@ -147,6 +205,7 @@ package objects
 				if (_arrowKeys["left"] == true && _arrowKeys["right"] == false && move)
 				{
 					this.x -= _speed;
+					newAnimationState = WALK_RIGHT;
 					if (this.x < 0)
 					{
 						this.x = 0;
@@ -155,6 +214,7 @@ package objects
 				else if (_arrowKeys["right"] == true && _arrowKeys["left"] == false && move)
 				{
 					this.x += _speed;
+					newAnimationState = WALK_RIGHT;
 					if (this.x > stage.stageWidth - this.width)
 					{
 						this.x = stage.stageWidth - this.width;	
@@ -191,7 +251,7 @@ package objects
 				if (_jumpTimer >= _maxJumpTimer) 
 				{
 					_jumpTimer = 0;
-					idleImage.y += _jumpVelocity;
+					movieVector[animationState].y += _jumpVelocity;
 					_jumpHeight += _jumpVelocity;
 					if (_jumpHeight < -_maxJumpHeight)
 					{
