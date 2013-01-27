@@ -4,6 +4,7 @@ package  {
 	import objects.BeatSwitcher;
 	import objects.GameObject;
 	import flash.display.MovieClip;
+	import objects.Layouts;
 	import objects.Platform;
 	import objects.Player;
 	import objects.GameTimer;
@@ -11,6 +12,7 @@ package  {
 	import starling.display.Sprite;
 	import starling.textures.*;
 	import starling.display.Image;
+	import manager.Assets;
 	
 	public class Game extends Sprite
 	{
@@ -22,11 +24,20 @@ package  {
 		
 		private var level:Level = new Level();
 		
+		public var beatSwitcher:BeatSwitcher = new BeatSwitcher();
+		public var layouts:Layouts = new Layouts();
+		
 		public function Game()
 		{
+			Assets.playBackground();
+			
+			var plat:Platform = new Platform("carpet", 10, 12, layouts.rectangle );
+			this.addChild(plat);
+			
 			allLevels.push(level);
 			
 			startLevel();
+			
 			
 			//level 1
 			
@@ -42,10 +53,11 @@ package  {
 			Platform.addTile(new Rectangle(plat4.x, plat4.y, plat4.width, plat4.height))
 			Platform.addTile(new Rectangle(plat5.x, plat5.y, plat5.width, plat5.height))
 			
+			*/
 			var player:Player = new Player();
 			this.addChild(player);
 			
-			var timer:GameTimer = new GameTimer(60000);
+			/*var timer:GameTimer = new GameTimer(60000);
 			this.addChild(timer);*/
 		}
 		

@@ -63,7 +63,6 @@ package objects
 		
 		override protected function updateFrame(e:Event):void
 		{
-			super();
 			movePlayer();
 			applyJumpForce();
 			checkFloor();
@@ -190,13 +189,13 @@ package objects
 		
 		private function checkFloor():void
 		{
-			for (var i:int = 0; i < Platform.tiles.length; i++)
+			/*for (var i:int = 0; i < Platform.tiles.length; i++)
 			{
 				if (Platform.tiles[i].containsPoint(standPoint))
 				{
 					trace("WHOA");
 				}
-			}
+			}*/
 		}
 	}
 }

@@ -2,6 +2,8 @@ package manager{
 	
 	import flash.display.Bitmap;
 	import flash.media.Sound;
+	import flash.media.Sound;
+	import flash.media.SoundChannel;
 	import flash.utils.ByteArray;
 	import flash.utils.Dictionary;
 	
@@ -17,6 +19,12 @@ package manager{
 		 
 		[Embed(source = "../../assets/art/img.png")] 
 		public static const AtlasTexture:Class;
+		
+		[Embed(source="../../assets/audio/Trippin' Falls Non-Loop.mp3")]
+		public static const snd:Class;
+		
+		public static var background:Sound = new snd() as Sound; 
+        public static var sndChannel:SoundChannel;
 		
 		private static var _textures:Dictionary = new Dictionary();
 		private static var _textureAtlas:TextureAtlas;
@@ -52,6 +60,16 @@ package manager{
 			}
 			
 			return _textureAtlas;
+		}
+		
+		public static function playBackground():void
+		{
+			sndChannel = background.play();
+		}
+		
+		public static function stopBackground():void
+		{
+			sndChannel.stop();
 		}
 	}
 }
