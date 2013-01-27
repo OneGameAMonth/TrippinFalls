@@ -25,7 +25,7 @@ package objects
 		
 		protected function updateFrame(e:Event):void 
 		{
-			getTime()
+			getTime();
 		}
 		
 		protected function getTime():void

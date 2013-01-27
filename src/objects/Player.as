@@ -1,14 +1,18 @@
 package objects 
 {
+	import flash.geom.Point;
 	import flash.utils.Dictionary;
-	import starling.events.Event;
+	import flash.geom.Rectangle
 	
+	import starling.events.Event;
 	import starling.display.Image;
 	import starling.textures.Texture;
 	import starling.textures.TextureAtlas;
 	import starling.events.KeyboardEvent;
 	import starling.core.Starling;
+	
 	import manager.Assets;
+	import Game;
 	
 	public class Player extends GameObject
 	{	
@@ -22,6 +26,8 @@ package objects
 		private var _jumpVelocity:int;
 		private var _jumpHeight:int;
 		private var _maxJumpHeight:int;
+		public var standRect:Rectangle;
+		public var standPoint:Point
 		
 		private var idleImage:Image;
 		
@@ -39,12 +45,16 @@ package objects
 			_jumpTimer = 1;
 			_maxJumpTimer = 2;
 			
-			this.x = 100;
-			this.y = 100;
+			this.x = 400;
+			this.y = 400;
+			
 			_arrowKeys["up"] = false;
 			_arrowKeys["down"] = false;
 			_arrowKeys["left"] = false;
 			_arrowKeys["right"] = false;
+			
+			standRect = new Rectangle(this.x, this.y + 32, 32, 32);
+			standPoint = new Point((standRect.x / 2), (standRect.y / 2));
 			
 			addChild(idleImage);
 			Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
@@ -53,8 +63,10 @@ package objects
 		
 		override protected function updateFrame(e:Event):void
 		{
+			super();
 			movePlayer();
 			applyJumpForce();
+			checkFloor();
 		}
 		
 		private function onKeyDown(e:KeyboardEvent):void
@@ -101,9 +113,9 @@ package objects
 			if (_arrowKeys["up"] == true && _arrowKeys["down"] == false)
 			{
 				this.y -= _speed;
-				if (this.y < 0)
+				if (this.y < 24)
 				{
-					this.y = 0;
+					this.y = 24;
 				}
 			}
 			else if (_arrowKeys["down"] == true && _arrowKeys["up"] == false)
@@ -127,9 +139,18 @@ package objects
 				this.x += _speed;
 				if (this.x > stage.stageWidth - this.width)
 				{
-					this.x = stage.stageWidth - this.width;
+					this.x = stage.stageWidth - this.width;	
 				}
 			}
+			updateStandRect();
+		}
+		
+		private function updateStandRect():void
+		{
+			standRect.x = this.x;
+			standRect.y = this.y + 32;
+			standPoint.x = (standRect.x + (standRect.x + standRect.width)) / 2; 
+			standPoint.y = (standRect.y + (standRect.y + standRect.height)) / 2;
 		}
 		
 		private function jump():void
@@ -163,6 +184,17 @@ package objects
 						_jumpHeight = 0;
 						land();
 					}
+				}
+			}
+		}
+		
+		private function checkFloor():void
+		{
+			for (var i:int = 0; i < Platform.tiles.length; i++)
+			{
+				if (Platform.tiles[i].containsPoint(standPoint))
+				{
+					trace("WHOA");
 				}
 			}
 		}
