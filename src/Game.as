@@ -33,6 +33,8 @@ package  {
 		
 		public var startTime:int = getTimer();
 		public var lastMod:int = 0;
+		public var lastThird:int = 0;
+		public var thirdCount:int = 0;
 		
 		public function Game()
 		{
@@ -46,7 +48,11 @@ package  {
 		{
 			var elapsedTime:int = getTimer() - startTime;
 			var modTime:int = elapsedTime % 1000;
-			if ( elapsedTime % 1000 < lastMod ) { beatSwitcher.flipPlats(); }
+			var thirdTime:int = elapsedTime % 333;
+			if ( modTime < lastMod ) { beatSwitcher.flipPlats(); }
+			//if ( thirdTime < lastThird ) { thirdCount++; if( thirdCount % 3 == 0){ beatSwitcher.disappearPlats(); } }
+			lastMod = modTime;
+			lastThird = thirdTime;
 		}
 		
 		private function initGame():void

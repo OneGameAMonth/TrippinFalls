@@ -14,7 +14,7 @@ package levels
 		}
 		
 		override public function readyLevel(game:Game):void
-		{	
+		{ 
 			gameStage = game;
 			plats[0] = new Platform("tile", 0, 11, layouts.rectangle, true, 1 );
 			plats[1] = new Platform("tile", 0, 9, layouts.bigRow, false, 2 );

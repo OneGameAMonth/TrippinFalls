@@ -7,7 +7,7 @@ package objects
 	import starling.textures.TextureAtlas;
 	import manager.Assets;
 	
-	public class Obstacle 
+	public class Obstacle extends GameObject
 	{
 		public var img:Image;
 		public var obWidth:int;
