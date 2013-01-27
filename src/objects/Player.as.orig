@@ -186,12 +186,17 @@ package objects
 			
 			if (_isDying == false)
 			{
+<<<<<<< HEAD
 				if (_arrowKeys["up"] == true && _arrowKeys["down"] == false)
+=======
+				var move:Boolean = true;
+				for (var i:int = 0; i <  currentLevel.plats.length; i++ )
 				{
 					if ( currentLevel.plats[i].checkObstacleCollision(standPoint) == 1 ) { move = false; }
 					if ( currentLevel.plats[i].checkObstacleCollision(standPoint) == 2 ) { currentLevel.gameStage.nextLevel(); }
 				}
 				if (_arrowKeys["up"] == true && _arrowKeys["down"] == false && move)
+>>>>>>> e53bedb22dd18c8dee74629e4d63b90b3f79eed2
 				{
 					this.y -= _speed;
 					//newAnimationState = WALK_BACK;

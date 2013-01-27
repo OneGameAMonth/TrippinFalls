@@ -10,7 +10,7 @@ package levels
 		protected var layouts:Layouts = new Layouts();
 		protected var levelLength:int;
 		public var plats:Vector.<Platform> = new Vector.<Platform>;
-		protected var gameStage:Game;
+		public var gameStage:Game;
 		
 		public function Level() 
 		{
