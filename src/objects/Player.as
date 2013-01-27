@@ -48,7 +48,7 @@ package objects
 		private const WALK_RIGHT:int = 2;
 		private const WALK_LEFT:int = 3;
 		
-		
+		private var lastPos:Array = new Array(2);
 		private var idleImage:Image;
 		
 		public function Player(xPos:int, yPos:int, cLevel:Level) 
@@ -181,8 +181,9 @@ package objects
 				for (var i:int = 0; i <  currentLevel.plats.length; i++ )
 				{
 					if ( currentLevel.plats[i].checkObstacleCollision(standPoint) == 1 ) { move = false; }
-					if ( currentLevel.plats[i].checkObstacleCollision(standPoint) == 2 ) { currentLevel.gameStage.nextLevel(); }
+					//if ( currentLevel.plats[i].checkObstacleCollision(standPoint) == 2 ) { currentLevel.gameStage.nextLevel(); }
 				}
+				if (move) { lastPos[0] = this.x; lastPos[1] = this.y; }
 				if (_arrowKeys["up"] == true && _arrowKeys["down"] == false && move)
 				{
 					this.y -= _speed;
@@ -221,6 +222,7 @@ package objects
 					}
 				}
 				updateStandRect();
+				if (!move) { this.x = this.lastPos[0]; this.y = this.lastPos[1]; }
 			}
 		}
 		

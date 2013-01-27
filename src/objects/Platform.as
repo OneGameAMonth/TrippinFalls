@@ -137,7 +137,6 @@ package objects
 			if ( hasObstacle )
 			{
 				obCollision = obstacle.checkCollision( pnt );
-				//if object is goal flag it and change levels on  hit
 			}
 			return obCollision;
 		}
@@ -148,7 +147,7 @@ package objects
 			for (var i:int = 0; i < platImageVec.length; i++)
 			{
 				var rec:Rectangle = new Rectangle(platImageVec[i].x, platImageVec[i].y, platImageVec[i].width, platImageVec[i].height);
-				if (rec.containsPoint(pos))
+				if (rec.containsPoint(pos) && checkOn)
 				{
 					collision = true;
 				}
