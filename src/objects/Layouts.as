@@ -17,10 +17,10 @@ package objects
 								  [0, 0, 0, 0],
 								  [0, 0, 0, 0]];
 			public var bigSquare:Array = [ 
-								  [0, 0, 0, 0],
-								  [0, 0, 0, 0],
-								  [0, 0, 0, 0],
-								  [0, 0, 0, 0]
+								  [1, 1, 1, 1],
+								  [1, 1, 1, 1],
+								  [1, 1, 1, 1],
+								  [1, 1, 1, 1]
 								  ];
 			public var mediumSquare:Array = [ 
 								  [1, 1, 1, 0],
