@@ -25,17 +25,17 @@ package objects
 			currentBeat++;
 			for (var i:int = 0; i <  game.allLevels[game.levelIndex].plats.length; i++ )
 			{
-				if (game.allLevels[game.levelIndex].plats[i].beat == currentBeat) { 
+				if (game.allLevels[game.levelIndex].plats[i].beat == currentBeat%beatsPerCycle) { 
 					game.allLevels[game.levelIndex].plats[i].turnOn();
 				}
-				else if (game.allLevels[game.levelIndex].plats[i].beat == currentBeat+1) { 
+				else { game.allLevels[game.levelIndex].plats[i].turnOff(); }
+				if (game.allLevels[game.levelIndex].plats[i].beat == (currentBeat+1)%beatsPerCycle) { 
 					game.allLevels[game.levelIndex].plats[i].hintIn();
 				}
-				else { 
-					game.allLevels[game.levelIndex].plats[i].turnOff();
-				}
+				game.allLevels[game.levelIndex].plats[i].obstacleOpacityMatch();
 			}
 		}
+		
 		public function setBeat( b:int ):void
 		{
 			currentBeat = b;

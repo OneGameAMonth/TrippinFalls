@@ -155,6 +155,16 @@ package objects
 			obstacle.setPosition( xCoord + ( tlX * 32 ), yCoord + ( tlY * 32 ) );
 			addChild(obstacle.img);
 			if (goal) { obstacle.setGoal(); }
+			if (checkOn == true) { turnOn(); }
+			else { turnOff(); }
+		}
+		
+		public function obstacleOpacityMatch():void
+		{
+			for (var i:int = 0; i < platImageVec.length; i++ )
+			{
+				if(hasObstacle){obstacle.img.alpha = platImageVec[i].alpha;}
+			}
 		}
 	}
 
