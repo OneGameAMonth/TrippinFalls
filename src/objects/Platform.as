@@ -33,14 +33,15 @@ package objects
 		
 		public var checkOn:Boolean;
 		public var beat:int;
+		public var frozen:Boolean = false;
 		
 		public function Platform(t:String, unitsRight:int, unitsDown:int, layout:Array, onis:Boolean = true, onBeat:int = 1 ) 
 		{
 			hasObstacle = false;
 			type = t;
 			platLayout = layout;
-			xCoord = (unitsRight-1) * 32;
-			yCoord = ( (unitsDown - 1) * 32) + 56;
+			xCoord = (unitsRight) * 32;
+			yCoord = ( (unitsDown ) * 32) + 56;
 			checkOn = onis;
 			beat = onBeat;
 			var atlas:TextureAtlas = Assets.fetchTextureAtlas();
@@ -67,36 +68,44 @@ package objects
 		
 		public function turnOn():void
 		{
-			for (var i:int = 0; i < platImageVec.length; i++ )
-			{
-				platImageVec[i].alpha = 1;
+			if(!frozen){
+				for (var i:int = 0; i < platImageVec.length; i++ )
+				{
+					platImageVec[i].alpha = 1;
+				}
+				checkOn = true;
 			}
-			checkOn = true;
 		}
 		
 		public function turnOff():void
 		{
-			for (var i:int = 0; i < platImageVec.length; i++ )
-			{
-				platImageVec[i].alpha = 0;
+			if(!frozen){
+				for (var i:int = 0; i < platImageVec.length; i++ )
+				{
+					platImageVec[i].alpha = 0;
+				}
+				checkOn = false;
 			}
-			checkOn = false;
 		}
 		
 		public function hintIn():void // hint the player where this platform will appear
 		{
-			for (var i:int = 0; i < platImageVec.length; i++ )
-			{
-				platImageVec[i].alpha = 0.2;
+			if(!frozen){
+				for (var i:int = 0; i < platImageVec.length; i++ )
+				{
+					platImageVec[i].alpha = 0.2;
+				}
+				checkOn = false;
 			}
-			checkOn = false;
 		}
 		
 		public function setOpacity( alp:Number):void
 		{
-			for (var i:int = 0; i < platImageVec.length; i++ )
-			{
-				platImageVec[i].alpha = alp;
+			if(!frozen){
+				for (var i:int = 0; i < platImageVec.length; i++ )
+				{
+					platImageVec[i].alpha = alp;
+				}
 			}
 		}
 		
@@ -165,6 +174,11 @@ package objects
 			{
 				if(hasObstacle){obstacle.img.alpha = platImageVec[i].alpha;}
 			}
+		}
+		
+		public function freeze():void
+		{
+			frozen = true;
 		}
 	}
 

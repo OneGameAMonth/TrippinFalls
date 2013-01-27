@@ -177,7 +177,13 @@ package objects
 		{
 			if (_isDying == false)
 			{
-				if (_arrowKeys["up"] == true && _arrowKeys["down"] == false)
+				var move:Boolean = true;
+				for (var i:int = 0; i <  currentLevel.plats.length; i++ )
+				{
+					if ( currentLevel.plats[i].checkObstacleCollision(standPoint) ) { move = false; }
+					
+				}
+				if (_arrowKeys["up"] == true && _arrowKeys["down"] == false && move)
 				{
 					this.y -= _speed;
 					newAnimationState = WALK_BACK;
@@ -187,7 +193,7 @@ package objects
 					}
 					
 				}
-				else if (_arrowKeys["down"] == true && _arrowKeys["up"] == false)
+				else if (_arrowKeys["down"] == true && _arrowKeys["up"] == false && move)
 				{
 					this.y += _speed;
 					newAnimationState = WALK_FORWARD;
@@ -196,7 +202,7 @@ package objects
 						this.y = stage.stageHeight - this.height;
 					}
 				}
-				if (_arrowKeys["left"] == true && _arrowKeys["right"] == false)
+				if (_arrowKeys["left"] == true && _arrowKeys["right"] == false && move)
 				{
 					this.x -= _speed;
 					newAnimationState = WALK_RIGHT;
@@ -205,7 +211,7 @@ package objects
 						this.x = 0;
 					}
 				}
-				else if (_arrowKeys["right"] == true && _arrowKeys["left"] == false)
+				else if (_arrowKeys["right"] == true && _arrowKeys["left"] == false && move)
 				{
 					this.x += _speed;
 					newAnimationState = WALK_RIGHT;
