@@ -131,9 +131,9 @@ package objects
 			return collision;
 		}
 		
-		public function checkObstacleCollision(pnt:Point):Boolean
+		public function checkObstacleCollision(pnt:Point):int
 		{ 
-			var obCollision:Boolean = false;
+			var obCollision:int = 0;
 			if ( hasObstacle )
 			{
 				obCollision = obstacle.checkCollision( pnt );

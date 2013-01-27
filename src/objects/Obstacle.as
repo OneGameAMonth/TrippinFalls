@@ -34,12 +34,12 @@ package objects
 			img.y = tY;
 		}
 		
-		public function checkCollision( pnt:Point ):Boolean
+		public function checkCollision( pnt:Point ):int
 		{
-			var test:Boolean = false;
-			test = collisionRec.containsPoint( pnt );
+			var test:int = 0;
+			if (collisionRec.containsPoint( pnt ) ) { test = 1; }
 			if (isGoal) { 
-				//load next level
+				test = 2;
 			}
 			return test;
 		}

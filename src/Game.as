@@ -71,7 +71,7 @@ package  {
 			allLevels[levelIndex].readyLevel(this);
 		}
 		
-		private function nextLevel():void
+		public function nextLevel():void
 		{
 			removeChild(allLevels[levelIndex]);
 			levelIndex++;

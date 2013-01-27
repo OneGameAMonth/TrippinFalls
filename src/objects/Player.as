@@ -125,8 +125,8 @@ package objects
 				var move:Boolean = true;
 				for (var i:int = 0; i <  currentLevel.plats.length; i++ )
 				{
-					if ( currentLevel.plats[i].checkObstacleCollision(standPoint) ) { move = false; }
-					
+					if ( currentLevel.plats[i].checkObstacleCollision(standPoint) == 1 ) { move = false; }
+					if ( currentLevel.plats[i].checkObstacleCollision(standPoint) == 2 ) { currentLevel.gameStage.nextLevel(); }
 				}
 				if (_arrowKeys["up"] == true && _arrowKeys["down"] == false && move)
 				{
