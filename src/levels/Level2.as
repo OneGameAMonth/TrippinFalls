@@ -5,11 +5,6 @@ package levels
 		
 		public function Level2() 
 		{
-			trace("yo");
-		}
-		
-		override public function readyLevel():void
-		{
 			
 		}
 		

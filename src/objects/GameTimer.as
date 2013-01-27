@@ -13,9 +13,11 @@ package objects
 		private var _endTimer:int;
 		private var _xLoc:int;
 		private var _yLoc:int;
+		private var game:Game;
 		
-		public function GameTimer(timerLength:int) 
+		public function GameTimer(timerLength:int, gameStage:Game) 
 		{
+			game = gameStage;
 			_xLoc = 1200;
 			_yLoc = 20;
 			_endTimer = _startTimer + timerLength;
@@ -38,6 +40,10 @@ package objects
 		private function parseTimeRemaining():String
 		{
 			var milliseconds:int = _endTimer - getTimer();
+			if (milliseconds <= 0)
+			{
+				game.restartGame();
+			}
 			var minutes:int = milliseconds / (1000 * 60);
 			var seconds:int = (milliseconds % (1000 * 60)) / 1000;
 			return (minutes + ':' + seconds);
