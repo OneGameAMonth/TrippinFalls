@@ -2,7 +2,7 @@
 <data version="1.0">
     <struct type="Settings">
         <key>fileFormatVersion</key>
-        <int>1</int>
+        <int>0</int>
         <key>variation</key>
         <string>main</string>
         <key>verbose</key>
@@ -22,7 +22,7 @@
         <key>dataFormat</key>
         <string>sparrow</string>
         <key>textureFileName</key>
-        <filename>img.png</filename>
+        <filename></filename>
         <key>flipPVR</key>
         <false/>
         <key>ditherType</key>
@@ -111,7 +111,7 @@
             <enum type="AndEngine::MagFilter">MagLinear</enum>
         </struct>
         <key>dataFileName</key>
-        <filename>img.xml</filename>
+        <filename></filename>
         <key>mainExtension</key>
         <string></string>
         <key>forceIdenticalLayout</key>
@@ -141,27 +141,28 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>pngs/player.png</filename>
-            <filename>pngs/carpet.bmp</filename>
+            <filename>pngs/dresser.png</filename>
             <filename>pngs/goal.png</filename>
-            <filename>pngs/tile.bmp</filename>
-            <filename>pngs/carpet.bmp</filename>
-            <filename>pngs/goal.png</filename>
-            <filename>pngs/tile.bmp</filename>
-            <filename>pngs/carpet.bmp</filename>
-            <filename>pngs/goal.png</filename>
-            <filename>pngs/tile.bmp</filename>
+            <filename>pngs/hatrack.png</filename>
+            <filename>pngs/microwave.png</filename>
             <filename>pngs/nothing.bmp</filename>
-            <filename>../../../../Dropbox/TrippinFalls/assets/Art/hatrack.png</filename>
-            <filename>../../../../Dropbox/TrippinFalls/assets/Art/microwave.png</filename>
-            <filename>../../../../Dropbox/TrippinFalls/assets/Art/oven.png</filename>
-            <filename>../../../../Dropbox/TrippinFalls/assets/Art/refrigerator.png</filename>
-            <filename>../../../../Dropbox/TrippinFalls/assets/Art/sink.png</filename>
-            <filename>../../../../Dropbox/TrippinFalls/assets/Art/toilet.png</filename>
-            <filename>../../../../Dropbox/TrippinFalls/assets/Art/bed.png</filename>
-            <filename>../../../../Dropbox/TrippinFalls/assets/Art/bookcase.png</filename>
-            <filename>../../../../Dropbox/TrippinFalls/assets/Art/couch.png</filename>
-            <filename>../../../../Dropbox/TrippinFalls/assets/Art/dresser.png</filename>
+            <filename>pngs/oven.png</filename>
+            <filename>pngs/player.png</filename>
+            <filename>pngs/refrigerator.png</filename>
+            <filename>pngs/sink.png</filename>
+            <filename>pngs/tile.bmp</filename>
+            <filename>pngs/toilet.png</filename>
+            <filename>pngs/bed.png</filename>
+            <filename>pngs/bookcase.png</filename>
+            <filename>pngs/carpet.bmp</filename>
+            <filename>pngs/couch.png</filename>
+            <filename>swfs/Back jump still.swf</filename>
+            <filename>swfs/Back walk.swf</filename>
+            <filename>swfs/Fall.swf</filename>
+            <filename>swfs/Front jump still.swf</filename>
+            <filename>swfs/Front walk.swf</filename>
+            <filename>swfs/Side jump still.swf</filename>
+            <filename>swfs/Side walk.swf</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
