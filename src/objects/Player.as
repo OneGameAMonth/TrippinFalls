@@ -40,6 +40,7 @@ package objects
 		private var walkBackMovie:MovieClip;
 		private var walkForwardMovie:MovieClip;
 		private var walkRightMovie:MovieClip;
+		private var fallMovie:MovieClip;
 		private var movieVector:Vector.<MovieClip>;
 		private var animationState:int;
 		private var newAnimationState:int;
@@ -47,7 +48,7 @@ package objects
 		private const WALK_BACK:int = 1;
 		private const WALK_RIGHT:int = 2;
 		private const WALK_LEFT:int = 3;
-		
+		private const FALLING:int = 4;
 		
 		private var idleImage:Image;
 		
@@ -72,14 +73,20 @@ package objects
 			walkBackMovie = new MovieClip(backFrames, 6);
 			walkBackMovie.loop = true;
 			
+			var fallFrames:Vector.<Texture> = atlas.getTextures("Fall/000");
+			fallMovie = new MovieClip(backFrames, 5);
+			fallMovie.loop = false;
+			
 			movieVector = new Vector.<MovieClip>();
 			movieVector[WALK_FORWARD] = walkForwardMovie;
 			movieVector[WALK_BACK] = walkBackMovie;
 			movieVector[WALK_RIGHT] = walkRightMovie;
 			movieVector[WALK_LEFT] = walkLeftMovie;
+			movieVector[FALLING] = fallMovie;
 			
 			animationState = WALK_FORWARD;
 			newAnimationState = WALK_FORWARD;
+			Starling.juggler.add(movieVector[animationState]);
 			
 			/*var idleFrames:Texture = atlas.getTexture("player");
 			idleImage = new Image(idleFrames);*/
@@ -169,52 +176,48 @@ package objects
 					break;
 				case 68:
 					_arrowKeys["right"] = false;
+					//checkForGoal();
 					break;
 			}
 		}
 		
 		private function movePlayer():void
 		{
+			
 			if (_isDying == false)
 			{
-				var move:Boolean = true;
-				for (var i:int = 0; i <  currentLevel.plats.length; i++ )
-				{
-					if ( currentLevel.plats[i].checkObstacleCollision(standPoint) ) { move = false; }
-					
-				}
-				if (_arrowKeys["up"] == true && _arrowKeys["down"] == false && move)
+				if (_arrowKeys["up"] == true && _arrowKeys["down"] == false)
 				{
 					this.y -= _speed;
-					newAnimationState = WALK_BACK;
+					//newAnimationState = WALK_BACK;
 					if (this.y < 24)
 					{
 						this.y = 24;
 					}
 					
 				}
-				else if (_arrowKeys["down"] == true && _arrowKeys["up"] == false && move)
+				else if (_arrowKeys["down"] == true && _arrowKeys["up"] == false)
 				{
 					this.y += _speed;
-					newAnimationState = WALK_FORWARD;
+					//newAnimationState = WALK_FORWARD;
 					if (this.y > stage.stageHeight - this.height)
 					{
 						this.y = stage.stageHeight - this.height;
 					}
 				}
-				if (_arrowKeys["left"] == true && _arrowKeys["right"] == false && move)
+				if (_arrowKeys["left"] == true && _arrowKeys["right"] == false)
 				{
 					this.x -= _speed;
-					newAnimationState = WALK_RIGHT;
+					//newAnimationState = WALK_RIGHT;
 					if (this.x < 0)
 					{
 						this.x = 0;
 					}
 				}
-				else if (_arrowKeys["right"] == true && _arrowKeys["left"] == false && move)
+				else if (_arrowKeys["right"] == true && _arrowKeys["left"] == false)
 				{
 					this.x += _speed;
-					newAnimationState = WALK_RIGHT;
+					//newAnimationState = WALK_RIGHT;
 					if (this.x > stage.stageWidth - this.width)
 					{
 						this.x = stage.stageWidth - this.width;	
@@ -293,11 +296,19 @@ package objects
 		{
 			if (_isDying == true)
 			{
+				//newAnimationState = FALLING;
 				this.x = _startX;
 				this.y = _startY;
 				_isDying = false;
 				updateStandRect();
 			}
+		}
+		
+		private function checkForGoal():void
+		{
+			Starling.current.stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
+			Starling.current.stage.removeEventListener(KeyboardEvent.KEY_UP, onKeyUp);
+			currentLevel.goToNextLevel();
 		}
 	}
 }

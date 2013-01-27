@@ -27,8 +27,12 @@ package levels
 			for (var i:int = 0; i < plats.length; i++)
 			{
 				this.addChild(plats[i]);
-				trace(i);
 			}
+		}
+		
+		public function goToNextLevel():void
+		{
+			gameStage.nextLevel();
 		}
 	}
 }

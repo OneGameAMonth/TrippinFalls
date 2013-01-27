@@ -62,5 +62,4 @@ package levels
 			this.addChild(player);
 		}
 	}
-
 }
