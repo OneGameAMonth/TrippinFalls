@@ -1,5 +1,9 @@
 package  {
+	import flash.utils.getTimer;
+	import flash.events.AccelerometerEvent;
+	import flash.events.Event;
 	import flash.geom.Rectangle;
+	import flash.utils.getTimer;
 	import levels.*;
 	import objects.BeatSwitcher;
 	import objects.GameObject;
@@ -10,6 +14,7 @@ package  {
 	import objects.GameTimer;
 	import starling.core.*
 	import starling.display.Sprite;
+	import starling.events.EnterFrameEvent;
 	import starling.textures.*;
 	import starling.display.Image;
 	import manager.Assets;
@@ -17,19 +22,31 @@ package  {
 	public class Game extends Sprite
 	{
 		
-		private var allLevels:Vector.<Level> = new Vector.<Level>;
-		private var levelIndex:int = 0;
+		public var allLevels:Vector.<Level> = new Vector.<Level>;
+		public var levelIndex:int = 0;
 		
-		public var beatSwitcher:BeatSwitcher = new BeatSwitcher();
+		public var beatSwitcher:BeatSwitcher;
 		public var layouts:Layouts = new Layouts();
 		
 		public static var playerX:int;
 		public static var playerY:int;
 		
+		public var startTime:int = getTimer();
+		public var lastMod:int = 0;
+		
 		public function Game()
 		{
 			Assets.playBackground();
+			beatSwitcher = new BeatSwitcher(this, 1, 2);
+			addEventListener(EnterFrameEvent.ENTER_FRAME,beatTimer);
 			initGame();
+		}
+		
+		public function beatTimer(e:starling.events.Event):void
+		{
+			var elapsedTime:int = getTimer() - startTime;
+			var modTime:int = elapsedTime % 1000;
+			if ( elapsedTime % 1000 < lastMod ) { beatSwitcher.flipPlats(); }
 		}
 		
 		private function initGame():void

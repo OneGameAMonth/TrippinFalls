@@ -15,6 +15,8 @@ package objects
 		private var _yLoc:int;
 		private var game:Game;
 		
+		private var lastSeconds:int = 0;
+		
 		public function GameTimer(timerLength:int, gameStage:Game) 
 		{
 			game = gameStage;

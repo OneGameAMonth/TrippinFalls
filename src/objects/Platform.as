@@ -29,15 +29,20 @@ package objects
 		
 		public static var hasObstacle:Boolean = false;
 		public static var obstacle:Obstacle;
-		public static var platImageVec:Vector.<Image> = new Vector.<Image>;
+		public var platImageVec:Vector.<Image> = new Vector.<Image>;
 		
-		public function Platform(t:String, unitsRight:int, unitsDown:int, layout:Array ) 
+		public var checkOn:Boolean;
+		public var beat:int;
+		
+		public function Platform(t:String, unitsRight:int, unitsDown:int, layout:Array, onis:Boolean = true, onBeat:int = 1 ) 
 		{
 			hasObstacle = false;
 			type = t;
 			platLayout = layout;
 			xCoord = (unitsRight-1) * 32;
-			yCoord = ( (unitsDown-1) * 32) + 56;
+			yCoord = ( (unitsDown - 1) * 32) + 56;
+			checkOn = onis;
+			beat = onBeat;
 			var atlas:TextureAtlas = Assets.fetchTextureAtlas();
 			var count:int = 0;
 			//THERE HAS TO BE A BETTER WAY!!!
@@ -56,24 +61,8 @@ package objects
 					}
 				}
 			}
-			trace(layout.length);
-			Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
-		}
-		
-		private function onKeyDown(e:KeyboardEvent):void
-		{ //change texture on keypress
-			switch(e.keyCode)
-			{
-				case 67:
-					turnOff();
-					break;
-				case 86:
-					hintIn();
-					break;
-				case 88:
-					turnOn();
-					break;
-			}
+			if (checkOn == true) { turnOn(); }
+			else { turnOff(); }
 		}
 		
 		public function turnOn():void
@@ -82,6 +71,7 @@ package objects
 			{
 				platImageVec[i].alpha = 1;
 			}
+			checkOn = true;
 		}
 		
 		public function turnOff():void
@@ -90,6 +80,7 @@ package objects
 			{
 				platImageVec[i].alpha = 0;
 			}
+			checkOn = false;
 		}
 		
 		public function hintIn():void // hint the player where this platform will appear
@@ -98,6 +89,7 @@ package objects
 			{
 				platImageVec[i].alpha = 0.2;
 			}
+			checkOn = false;
 		}
 		
 		public function setOpacity( alp:Number):void
@@ -130,7 +122,7 @@ package objects
 			return collision;
 		}
 		
-		public static function checkObstacleCollision(pnt:Point):Boolean
+		public function checkObstacleCollision(pnt:Point):Boolean
 		{ 
 			var obCollision:Boolean = false;
 			if ( hasObstacle )
@@ -141,7 +133,7 @@ package objects
 			return obCollision;
 		}
 		
-		public static function checkFloor(pos:Point):Boolean
+		public function checkFloor(pos:Point):Boolean
 		{
 			var collision:Boolean = false;
 			for (var i:int = 0; i < platImageVec.length; i++)
@@ -156,12 +148,13 @@ package objects
 		}
 		
 		//in Relative TILES!!!
-		public function addObstacle( type:String, tlX:int, tlY:int ):void
+		public function addObstacle( type:String, tlX:int, tlY:int, goal:Boolean = false ):void
 		{
 			hasObstacle = true;
 			obstacle = new Obstacle(type);
 			obstacle.setPosition( xCoord + ( tlX * 32 ), yCoord + ( tlY * 32 ) );
 			addChild(obstacle.img);
+			if (goal) { obstacle.setGoal(); }
 		}
 	}
 

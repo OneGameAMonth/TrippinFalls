@@ -9,7 +9,7 @@ package levels
 	{
 		protected var layouts:Layouts = new Layouts();
 		protected var levelLength:int;
-		protected var plats:Vector.<Platform> = new Vector.<Platform>;
+		public var plats:Vector.<Platform> = new Vector.<Platform>;
 		protected var gameStage:Game;
 		
 		public function Level() 

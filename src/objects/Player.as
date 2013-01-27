@@ -3,6 +3,7 @@ package objects
 	import flash.geom.Point;
 	import flash.utils.Dictionary;
 	import flash.geom.Rectangle
+	import levels.Level;
 	
 	import starling.events.Event;
 	import starling.display.Image;
@@ -32,15 +33,18 @@ package objects
 		private var _maxJumpHeight:int;
 		public var standRect:Rectangle;
 		public var standPoint:Point
+		public var currentLevel:Level;
 		
 		private var idleImage:Image;
 		
-		public function Player(xPos:int, yPos:int) 
+		public function Player(xPos:int, yPos:int, cLevel:Level) 
 		{
 			var atlas:TextureAtlas = Assets.fetchTextureAtlas();
 			
 			var idleFrames:Texture = atlas.getTexture("player");
 			idleImage = new Image(idleFrames);
+			
+			currentLevel = cLevel;
 			
 			_speed = 5;
 			_jumpVelocity = -5;
@@ -62,7 +66,6 @@ package objects
 			
 			standRect = new Rectangle(this.x, this.y + 32, 32, 32);
 			standPoint = new Point((standRect.x / 2), (standRect.y / 2));
-			
 			addChild(idleImage);
 			Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
 			Starling.current.stage.addEventListener(KeyboardEvent.KEY_UP, onKeyUp);
@@ -202,8 +205,12 @@ package objects
 		{
 			if (_isJumping == false)
 			{
-				var isStanding:Boolean = Platform.checkFloor(standPoint);
-				Platform.checkObstacleCollision(standPoint);
+				var isStanding:Boolean = false;
+				for (var i:int = 0; i <  currentLevel.plats.length; i++ )
+				{
+					if ( currentLevel.plats[i].checkFloor(standPoint) ) { isStanding = true; }
+					currentLevel.plats[i].checkObstacleCollision(standPoint);
+				}
 				if (isStanding == true)
 				{
 					//trace("YES");

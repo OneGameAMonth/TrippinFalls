@@ -6,16 +6,13 @@ package objects
 	import starling.textures.Texture;
 	import starling.textures.TextureAtlas;
 	import manager.Assets;
-	/**
-	 * ...
-	 * @author ...
-	 */
+	
 	public class Obstacle 
 	{
 		public var img:Image;
 		public var obWidth:int;
 		public var obHeight:int;
-		public var isGoal:Boolean;
+		public var isGoal:Boolean = false;
 		
 		public var collisionRec:Rectangle;
 		
@@ -28,7 +25,6 @@ package objects
 			obHeight = tex.height;
 			img = new Image(tex);
 			
-			if ( type == "goal") { isGoal = true;  }
 		}
 		//in pixels
 		public function setPosition(tX:int, tY:int):void
@@ -42,8 +38,12 @@ package objects
 		{
 			var test:Boolean = false;
 			test = collisionRec.containsPoint( pnt );
-			if (test) { trace("WOOHOO");  }
 			return test;
+		}
+		
+		public function setGoal():void
+		{
+			isGoal = true;
 		}
 		
 	}
