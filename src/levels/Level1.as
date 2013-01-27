@@ -16,7 +16,8 @@ package levels
 		
 		override public function readyLevel():void
 		{			
-			var plat:Platform = new Platform("carpet", 10, 12, layouts.rectangle );
+			var plat:Platform = new Platform("carpet", 10, 12, layouts.bigSquare );
+			plat.addObstacle("dresser", 0, 0);
 			this.addChild(plat);
 			
 			var player:Player = new Player();

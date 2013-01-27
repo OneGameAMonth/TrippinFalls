@@ -198,6 +198,7 @@ package objects
 			if (_isJumping == false)
 			{
 				var isStanding:Boolean = Platform.checkFloor(standPoint);
+				Platform.checkObstacleCollision(standPoint);
 				if (isStanding == true)
 				{
 					//trace("YES");

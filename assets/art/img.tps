@@ -2,7 +2,7 @@
 <data version="1.0">
     <struct type="Settings">
         <key>fileFormatVersion</key>
-        <int>0</int>
+        <int>1</int>
         <key>variation</key>
         <string>main</string>
         <key>verbose</key>
@@ -142,6 +142,26 @@
         <key>fileList</key>
         <array>
             <filename>pngs/player.png</filename>
+            <filename>pngs/carpet.bmp</filename>
+            <filename>pngs/goal.png</filename>
+            <filename>pngs/tile.bmp</filename>
+            <filename>pngs/carpet.bmp</filename>
+            <filename>pngs/goal.png</filename>
+            <filename>pngs/tile.bmp</filename>
+            <filename>pngs/carpet.bmp</filename>
+            <filename>pngs/goal.png</filename>
+            <filename>pngs/tile.bmp</filename>
+            <filename>pngs/nothing.bmp</filename>
+            <filename>../../../../Dropbox/TrippinFalls/assets/Art/hatrack.png</filename>
+            <filename>../../../../Dropbox/TrippinFalls/assets/Art/microwave.png</filename>
+            <filename>../../../../Dropbox/TrippinFalls/assets/Art/oven.png</filename>
+            <filename>../../../../Dropbox/TrippinFalls/assets/Art/refrigerator.png</filename>
+            <filename>../../../../Dropbox/TrippinFalls/assets/Art/sink.png</filename>
+            <filename>../../../../Dropbox/TrippinFalls/assets/Art/toilet.png</filename>
+            <filename>../../../../Dropbox/TrippinFalls/assets/Art/bed.png</filename>
+            <filename>../../../../Dropbox/TrippinFalls/assets/Art/bookcase.png</filename>
+            <filename>../../../../Dropbox/TrippinFalls/assets/Art/couch.png</filename>
+            <filename>../../../../Dropbox/TrippinFalls/assets/Art/dresser.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

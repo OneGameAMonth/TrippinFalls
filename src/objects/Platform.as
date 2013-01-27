@@ -10,6 +10,7 @@ package objects
 	import starling.events.KeyboardEvent;
 	import starling.core.Starling;
 	import manager.Assets;
+	import objects.Obstacle;
 	import flash.geom.Point;
 	
 	public class Platform extends GameObject
@@ -26,10 +27,13 @@ package objects
 		public var xCoord:int;
 		public var yCoord:int;
 		
+		public static var hasObstacle:Boolean = false;
+		public static var obstacle:Obstacle;
 		public static var platImageVec:Vector.<Image> = new Vector.<Image>;
 		
 		public function Platform(t:String, unitsRight:int, unitsDown:int, layout:Array ) 
 		{
+			hasObstacle = false;
 			type = t;
 			platLayout = layout;
 			xCoord = (unitsRight-1) * 32;
@@ -74,22 +78,34 @@ package objects
 		
 		public function turnOn():void
 		{
-			texImg.alpha = 1.0;
+			for (var i:int = 0; i < platImageVec.length; i++ )
+			{
+				platImageVec[i].alpha = 1;
+			}
 		}
 		
 		public function turnOff():void
 		{
-			texImg.alpha = 0;
+			for (var i:int = 0; i < platImageVec.length; i++ )
+			{
+				platImageVec[i].alpha = 0;
+			}
 		}
 		
 		public function hintIn():void // hint the player where this platform will appear
 		{
-			texImg.alpha = 0.2;
+			for (var i:int = 0; i < platImageVec.length; i++ )
+			{
+				platImageVec[i].alpha = 0.2;
+			}
 		}
 		
 		public function setOpacity( alp:Number):void
 		{
-			texImg.alpha = alp;
+			for (var i:int = 0; i < platImageVec.length; i++ )
+			{
+				platImageVec[i].alpha = alp;
+			}
 		}
 		
 		//in Tiles
@@ -110,7 +126,19 @@ package objects
 			{
 				if ( getBounds(platImageVec[i]).intersects(rec) ) { collision = true; };
 			}
+			
 			return collision;
+		}
+		
+		public static function checkObstacleCollision(pnt:Point):Boolean
+		{ 
+			var obCollision:Boolean = false;
+			if ( hasObstacle )
+			{
+				obCollision = obstacle.checkCollision( pnt );
+				//if object is goal flag it and change levels on  hit
+			}
+			return obCollision;
 		}
 		
 		public static function checkFloor(pos:Point):Boolean
@@ -125,6 +153,15 @@ package objects
 				}
 			}
 			return collision;
+		}
+		
+		//in Relative TILES!!!
+		public function addObstacle( type:String, tlX:int, tlY:int ):void
+		{
+			hasObstacle = true;
+			obstacle = new Obstacle(type);
+			obstacle.setPosition( xCoord + ( tlX * 32 ), yCoord + ( tlY * 32 ) );
+			addChild(obstacle.img);
 		}
 	}
 

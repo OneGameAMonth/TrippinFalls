@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:c0b6af65cb43295699cc6b3ceaaa2f56$ -->
+<!-- $TexturePacker:SmartUpdate:d981d7f54600fa58948a3b161ba90a25$ -->
 <TextureAtlas imagePath="img.png">
-    <SubTexture name="carpet" x="70" y="2" width="32" height="32"/>
-    <SubTexture name="nothing" x="36" y="2" width="32" height="32"/>
-    <SubTexture name="player" x="2" y="2" width="32" height="64"/>
-    <SubTexture name="tile" x="2" y="68" width="32" height="32"/>
+    <SubTexture name="bed" x="2" y="139" width="86" height="74" frameX="-5" frameY="-1" frameWidth="98" frameHeight="78"/>
+    <SubTexture name="bookcase" x="2" y="2" width="105" height="135" frameX="-9" frameY="-45" frameWidth="123" frameHeight="225"/>
+    <SubTexture name="carpet" x="136" y="217" width="32" height="32"/>
+    <SubTexture name="couch" x="2" y="215" width="72" height="39" frameX="-13" frameY="-2" frameWidth="98" frameHeight="43"/>
+    <SubTexture name="dresser" x="109" y="2" width="100" height="69" frameX="-14" frameY="-3" frameWidth="128" frameHeight="75"/>
+    <SubTexture name="goal" x="209" y="136" width="32" height="32"/>
+    <SubTexture name="hatrack" x="170" y="229" width="48" height="55" frameX="-1" frameY="-1" frameWidth="50" frameHeight="57"/>
+    <SubTexture name="microwave" x="2" y="256" width="50" height="42" frameX="-11" frameY="-5" frameWidth="72" frameHeight="52"/>
+    <SubTexture name="nothing" x="209" y="102" width="32" height="32"/>
+    <SubTexture name="oven" x="109" y="73" width="98" height="72" frameX="-15" frameY="-3" frameWidth="128" frameHeight="78"/>
+    <SubTexture name="player" x="211" y="2" width="32" height="64"/>
+    <SubTexture name="refrigerator" x="172" y="170" width="80" height="57" frameX="-9" frameY="-4" frameWidth="98" frameHeight="81"/>
+    <SubTexture name="sink" x="90" y="147" width="80" height="68" frameX="-9" frameY="-3" frameWidth="98" frameHeight="74"/>
+    <SubTexture name="tile" x="211" y="68" width="32" height="32"/>
+    <SubTexture name="toilet" x="76" y="217" width="58" height="53" frameX="-7" frameY="-4" frameWidth="72" frameHeight="61"/>
 </TextureAtlas>
