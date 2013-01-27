@@ -9,7 +9,7 @@ package levels
 		
 		public function Level3() 
 		{
-			trace("hello");
+			
 		}
 		
 	}

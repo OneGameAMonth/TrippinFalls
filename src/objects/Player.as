@@ -19,6 +19,8 @@ package objects
 	{	
 		private var _arrowKeys:Dictionary = new Dictionary();
 		
+		private var _startX:int;
+		private var _startY:int;
 		private var _speed:int;
 		private var _isJumping:Boolean;
 		private var _isRising:Boolean;
@@ -33,7 +35,7 @@ package objects
 		
 		private var idleImage:Image;
 		
-		public function Player() 
+		public function Player(xPos:int, yPos:int) 
 		{
 			var atlas:TextureAtlas = Assets.fetchTextureAtlas();
 			
@@ -47,8 +49,11 @@ package objects
 			_jumpTimer = 1;
 			_maxJumpTimer = 2;
 			
-			this.x = 400;
-			this.y = 400;
+			_startX = xPos;
+			_startY = yPos;
+			
+			this.x = xPos;
+			this.y = yPos;
 			
 			_arrowKeys["up"] = false;
 			_arrowKeys["down"] = false;
@@ -198,13 +203,9 @@ package objects
 			if (_isJumping == false)
 			{
 				var isStanding:Boolean = Platform.checkFloor(standPoint);
-				if (isStanding == true)
+				if (isStanding == false)
 				{
-					//trace("YES");
-				}
-				else if (isStanding == false)
-				{
-					//trace("NO");
+					_isDying = true;
 				}
 			}
 		}
@@ -213,7 +214,10 @@ package objects
 		{
 			if (_isDying == true)
 			{
-				
+				this.x = _startX;
+				this.y = _startY;
+				_isDying = false;
+				updateStandRect();
 			}
 		}
 	}
