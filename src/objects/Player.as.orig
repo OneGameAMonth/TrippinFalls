@@ -48,8 +48,6 @@ package objects
 		private const WALK_BACK:int = 1;
 		private const WALK_RIGHT:int = 2;
 		private const WALK_LEFT:int = 3;
-		
-		private var lastPos:Array = new Array(2);
 		private const FALLING:int = 4;
 		
 		private var idleImage:Image;
@@ -64,8 +62,6 @@ package objects
 			
 			var leftFrames:Vector.<Texture> = atlas.getTextures("Side_Walk/000");
 			walkLeftMovie = new MovieClip(leftFrames, 7);
-			var lastP:int = walkLeftMovie.pivotX;
-			walkLeftMovie.pivotX = Math.ceil(walkLeftMovie.width/2);
 			walkLeftMovie.scaleX = -1;
 			walkLeftMovie.loop = true;
 			
@@ -190,17 +186,20 @@ package objects
 			
 			if (_isDying == false)
 			{
+<<<<<<< HEAD
+				if (_arrowKeys["up"] == true && _arrowKeys["down"] == false)
+=======
 				var move:Boolean = true;
-				for (var i:int = 0; i < currentLevel.plats.length; i++ )
+				for (var i:int = 0; i <  currentLevel.plats.length; i++ )
 				{
 					if ( currentLevel.plats[i].checkObstacleCollision(standPoint) == 1 ) { move = false; }
-					if ( currentLevel.plats[i].checkObstacleCollision(standPoint) == 2 ) { checkForGoal(); }
+					if ( currentLevel.plats[i].checkObstacleCollision(standPoint) == 2 ) { currentLevel.gameStage.nextLevel(); }
 				}
-				if (move) { lastPos[0] = this.x; lastPos[1] = this.y; }
 				if (_arrowKeys["up"] == true && _arrowKeys["down"] == false && move)
+>>>>>>> e53bedb22dd18c8dee74629e4d63b90b3f79eed2
 				{
 					this.y -= _speed;
-					newAnimationState = WALK_BACK;
+					//newAnimationState = WALK_BACK;
 					if (this.y < 24)
 					{
 						this.y = 24;
@@ -210,7 +209,7 @@ package objects
 				else if (_arrowKeys["down"] == true && _arrowKeys["up"] == false)
 				{
 					this.y += _speed;
-					newAnimationState = WALK_FORWARD;
+					//newAnimationState = WALK_FORWARD;
 					if (this.y > stage.stageHeight - this.height)
 					{
 						this.y = stage.stageHeight - this.height;
@@ -219,9 +218,7 @@ package objects
 				if (_arrowKeys["left"] == true && _arrowKeys["right"] == false)
 				{
 					this.x -= _speed;
-					
-					newAnimationState = WALK_LEFT;
-
+					//newAnimationState = WALK_RIGHT;
 					if (this.x < 0)
 					{
 						this.x = 0;
@@ -230,14 +227,13 @@ package objects
 				else if (_arrowKeys["right"] == true && _arrowKeys["left"] == false)
 				{
 					this.x += _speed;
-					newAnimationState = WALK_RIGHT;
+					//newAnimationState = WALK_RIGHT;
 					if (this.x > stage.stageWidth - this.width)
 					{
 						this.x = stage.stageWidth - this.width;	
 					}
 				}
 				updateStandRect();
-				if (!move) { this.x = this.lastPos[0]; this.y = this.lastPos[1]; }
 			}
 		}
 		
@@ -292,7 +288,7 @@ package objects
 				for (var i:int = 0; i <  currentLevel.plats.length; i++ )
 				{
 					if ( currentLevel.plats[i].checkFloor(standPoint) ) { isStanding = true; }
-					//currentLevel.plats[i].checkObstacleCollision(standPoint);
+					currentLevel.plats[i].checkObstacleCollision(standPoint);
 				}
 				if (isStanding == true)
 				{
@@ -324,6 +320,5 @@ package objects
 			Starling.current.stage.removeEventListener(KeyboardEvent.KEY_UP, onKeyUp);
 			currentLevel.goToNextLevel();
 		}
-
 	}
 }
