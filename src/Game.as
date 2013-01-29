@@ -50,7 +50,6 @@ package  {
 			var modTime:int = elapsedTime % 1000;
 			var thirdTime:int = elapsedTime % 333;
 			if ( modTime < lastMod ) { beatSwitcher.flipPlats(); }
-			//if ( thirdTime < lastThird ) { thirdCount++; if( thirdCount % 3 == 0){ beatSwitcher.disappearPlats(); } }
 			lastMod = modTime;
 			lastThird = thirdTime;
 		}

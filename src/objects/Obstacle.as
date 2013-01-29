@@ -37,9 +37,11 @@ package objects
 		public function checkCollision( pnt:Point ):int
 		{
 			var test:int = 0;
-			if (collisionRec.containsPoint( pnt ) ) { test = 1; }
-			if (isGoal) { 
-				test = 2;
+			if (collisionRec.containsPoint( pnt ) ) { 
+				test = 1;
+				if (isGoal) { 
+					test = 2;
+				}
 			}
 			return test;
 		}

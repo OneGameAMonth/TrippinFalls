@@ -27,8 +27,8 @@ package objects
 		public var xCoord:int;
 		public var yCoord:int;
 		
-		public static var hasObstacle:Boolean = false;
-		public static var obstacle:Obstacle;
+		public var hasObstacle:Boolean = false;
+		public var obstacle:Obstacle;
 		public var platImageVec:Vector.<Image> = new Vector.<Image>;
 		
 		public var checkOn:Boolean;
@@ -74,6 +74,7 @@ package objects
 					platImageVec[i].alpha = 1;
 				}
 				checkOn = true;
+				//if (hasObstacle) { obstacle.img.alpha = 1; }
 			}
 		}
 		
@@ -85,6 +86,7 @@ package objects
 					platImageVec[i].alpha = 0;
 				}
 				checkOn = false;
+				//if (hasObstacle) { obstacle.img.alpha = 0; }
 			}
 		}
 		
@@ -96,6 +98,7 @@ package objects
 					platImageVec[i].alpha = 0.2;
 				}
 				checkOn = false;
+				//if (hasObstacle) { obstacle.img.alpha = 0.2; }
 			}
 		}
 		
@@ -147,7 +150,7 @@ package objects
 			for (var i:int = 0; i < platImageVec.length; i++)
 			{
 				var rec:Rectangle = new Rectangle(platImageVec[i].x, platImageVec[i].y, platImageVec[i].width, platImageVec[i].height);
-				if (rec.containsPoint(pos) && checkOn)
+				if (rec.containsPoint(pos) )
 				{
 					collision = true;
 				}
@@ -169,10 +172,9 @@ package objects
 		
 		public function obstacleOpacityMatch():void
 		{
-			for (var i:int = 0; i < platImageVec.length; i++ )
-			{
-				if(hasObstacle){obstacle.img.alpha = platImageVec[i].alpha;}
-			}
+			
+				if (hasObstacle) { obstacle.img.alpha = platImageVec[0].alpha; }
+			
 		}
 		
 		public function freeze():void

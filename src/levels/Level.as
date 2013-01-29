@@ -22,6 +22,11 @@ package levels
 			
 		}
 		
+		public function goToNextLevel():void
+		{
+			gameStage.nextLevel();
+		}
+		
 		public function initPlatforms():void
 		{
 			for (var i:int = 0; i < plats.length; i++)

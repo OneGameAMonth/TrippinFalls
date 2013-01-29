@@ -61,7 +61,8 @@ package objects
 			
 			var leftFrames:Vector.<Texture> = atlas.getTextures("Side_Walk/000");
 			walkLeftMovie = new MovieClip(leftFrames, 7);
-			walkLeftMovie.scaleX = -1;
+			walkLeftMovie.pivotX = Math.ceil(walkLeftMovie.width/2);
+			walkLeftMovie.scaleX = -1;// this is the shunting problem
 			walkLeftMovie.loop = true;
 			
 			var forwardFrames:Vector.<Texture> = atlas.getTextures("Front_Walk/000");
@@ -181,7 +182,7 @@ package objects
 				for (var i:int = 0; i <  currentLevel.plats.length; i++ )
 				{
 					if ( currentLevel.plats[i].checkObstacleCollision(standPoint) == 1 ) { move = false; }
-					//if ( currentLevel.plats[i].checkObstacleCollision(standPoint) == 2 ) { currentLevel.gameStage.nextLevel(); }
+					if ( currentLevel.plats[i].checkObstacleCollision(standPoint) == 2 ) { checkForGoal(); }
 				}
 				if (move) { lastPos[0] = this.x; lastPos[1] = this.y; }
 				if (_arrowKeys["up"] == true && _arrowKeys["down"] == false && move)
@@ -206,7 +207,7 @@ package objects
 				if (_arrowKeys["left"] == true && _arrowKeys["right"] == false && move)
 				{
 					this.x -= _speed;
-					newAnimationState = WALK_RIGHT;
+					newAnimationState = WALK_LEFT;
 					if (this.x < 0)
 					{
 						this.x = 0;
@@ -301,5 +302,13 @@ package objects
 				updateStandRect();
 			}
 		}
+		
+		private function checkForGoal():void
+		{
+			Starling.current.stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
+			Starling.current.stage.removeEventListener(KeyboardEvent.KEY_UP, onKeyUp);
+			currentLevel.goToNextLevel();
+		}
+		
 	}
 }
