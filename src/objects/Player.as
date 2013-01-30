@@ -1,6 +1,7 @@
 package objects 
 {
 	import flash.geom.Point;
+	import flash.system.ImageDecodingPolicy;
 	import flash.utils.Dictionary;
 	import flash.geom.Rectangle
 	import levels.Level;
@@ -36,6 +37,11 @@ package objects
 		public var standPoint:Point
 		public var currentLevel:Level;
 		
+		private var rightIdle:MovieClip;
+		private var leftIdle:MovieClip;
+		private var backIdle:MovieClip;
+		private var forwardIdle:MovieClip;
+		
 		private var walkLeftMovie:MovieClip;
 		private var walkBackMovie:MovieClip;
 		private var walkForwardMovie:MovieClip;
@@ -48,9 +54,14 @@ package objects
 		private const WALK_BACK:int = 1;
 		private const WALK_RIGHT:int = 2;
 		private const WALK_LEFT:int = 3;
+		private const FALLING:int = 4;
+		private const IDLE_FORWARD: int = 5;
+		private const IDLE_BACK:int = 6;
+		private const IDLE_RIGHT:int = 7;
+		private const IDLE_LEFT:int = 8;
+		
 		
 		private var lastPos:Array = new Array(2);
-		private const FALLING:int = 4;
 		
 		private var idleImage:Image;
 		
@@ -77,6 +88,24 @@ package objects
 			walkBackMovie = new MovieClip(backFrames, 6);
 			walkBackMovie.loop = true;
 			
+			var rightIdleFrames:Vector.<Texture> = atlas.getTextures("Side_Idel/0000");
+			rightIdle = new MovieClip(rightIdleFrames, 1);
+			rightIdle.loop = false;
+			
+			var leftIdleFrames:Vector.<Texture> = atlas.getTextures("Side_Idel/0000");
+			leftIdle = new MovieClip(leftIdleFrames);
+			leftIdle.pivotX = Math.ceil(leftIdle.width);
+			leftIdle.scaleX = -1;
+			leftIdle.loop = false;
+			
+			var backIdleFrames:Vector.<Texture> = atlas.getTextures("Front_Idel/0000");
+			backIdle = new MovieClip(backIdleFrames, 1);
+			backIdle.loop = false;
+			
+			var forwardIdleFrames:Vector.<Texture> = atlas.getTextures("Back_Idel/0000");
+			forwardIdle = new MovieClip(forwardIdleFrames, 1);
+			forwardIdle.loop = false;
+			
 			var fallFrames:Vector.<Texture> = atlas.getTextures("Fall/000");
 			fallMovie = new MovieClip(backFrames, 5);
 			fallMovie.loop = false;
@@ -87,6 +116,10 @@ package objects
 			movieVector[WALK_RIGHT] = walkRightMovie;
 			movieVector[WALK_LEFT] = walkLeftMovie;
 			movieVector[FALLING] = fallMovie;
+			movieVector[IDLE_FORWARD] = forwardIdle;
+			movieVector[IDLE_BACK] = backIdle;
+			movieVector[IDLE_RIGHT] = rightIdle;
+			movieVector[IDLE_LEFT] = leftIdle;
 			
 			animationState = WALK_FORWARD;
 			newAnimationState = WALK_FORWARD;
@@ -139,7 +172,7 @@ package objects
 				Starling.juggler.remove(movieVector[animationState]);
 				
 				animationState = newAnimationState;
-				addChild(movieVector[animationState]);
+					addChild(movieVector[animationState]);
 				Starling.juggler.add(movieVector[animationState]);
 				
 			}
@@ -168,19 +201,37 @@ package objects
 		
 		private function onKeyUp(e:KeyboardEvent):void
 		{
+			var isIdle:Boolean
+			if (_arrowKeys["up" ] == false && _arrowKeys["down"] == false
+				&& _arrowKeys["left"] == false && _arrowKeys["right"] == false)
+				{
+					isIdle = true;
+				}
 			switch (e.keyCode) {
 				case 87:
 					_arrowKeys["up"] = false;
+					if (isIdle = true)
+					{
+						newAnimationState = 5;
+					}
 					break;
 				case 83:
 					_arrowKeys["down"] = false;
+					{
+						newAnimationState = 6;
+					}
 					break;
 				case 65:
 					_arrowKeys["left"] = false;
+					{
+						newAnimationState = 8;
+					}
 					break;
 				case 68:
 					_arrowKeys["right"] = false;
-					//checkForGoal();
+					{
+						newAnimationState = 7;
+					}
 					break;
 			}
 		}
