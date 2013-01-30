@@ -4,7 +4,6 @@ package objects
 	import flash.system.ImageDecodingPolicy;
 	import flash.utils.Dictionary;
 	import flash.geom.Rectangle
-	import levels.Level;
 	
 	import starling.events.Event;
 	import starling.display.Image;
@@ -17,6 +16,7 @@ package objects
 	import manager.Assets;
 	import Game;
 	import objects.Platform;
+	import levels.Level;
 	
 	public class Player extends GameObject
 	{	
@@ -69,9 +69,11 @@ package objects
 		{
 			var atlas:TextureAtlas = Assets.fetchTextureAtlas();
 			
-			var rightFrames:Vector.<Texture> = atlas.getTextures("Side_Walk/000");
+			walkRightMovie = loadAnimation("Side_Walk/000", 7, false, true);
+			
+			/*var rightFrames:Vector.<Texture> = atlas.getTextures("Side_Walk/000");
 			walkRightMovie = new MovieClip(rightFrames, 7);
-			walkRightMovie.loop = true;
+			walkRightMovie.loop = true;*/
 			
 			var leftFrames:Vector.<Texture> = atlas.getTextures("Side_Walk/000");
 			walkLeftMovie = new MovieClip(leftFrames, 7);

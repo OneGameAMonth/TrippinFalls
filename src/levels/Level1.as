@@ -39,7 +39,7 @@ package levels
 			
 			initPlatforms();
 			
-			var timer:GameTimer = new GameTimer(13000, game);
+			var timer:GameTimer = new GameTimer(1000000000, game);
 			this.addChild(timer);
 			
 			var player:Player = new Player(0,536, this);

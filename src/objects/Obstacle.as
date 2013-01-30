@@ -18,13 +18,9 @@ package objects
 		
 		public function Obstacle( type:String ) 
 		{
-			var atlas:TextureAtlas = Assets.fetchTextureAtlas();
-
-			var tex:Texture = atlas.getTexture(type);
-			obWidth = tex.width
-			obHeight = tex.height;
-			img = new Image(tex);
-			
+			img = loadImage(type);
+			obWidth = img.width;
+			obHeight = img.height;
 		}
 		//in pixels
 		public function setPosition(tX:int, tY:int):void

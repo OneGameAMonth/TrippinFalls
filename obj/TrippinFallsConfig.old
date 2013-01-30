@@ -16,7 +16,7 @@
     </define>
     <define append="true">
       <name>CONFIG::timeStamp</name>
-      <value>'1/29/2013'</value>
+      <value>'1/30/2013'</value>
     </define>
     <define append="true">
       <name>CONFIG::air</name>
@@ -32,15 +32,15 @@
     </define>
     <verbose-stacktraces>true</verbose-stacktraces>
     <source-path append="true">
-      <path-element>C:\Workspace\AS3\TrippinFalls\TrippinFalls\src</path-element>
+      <path-element>C:\Workspace\AS3\TrippinFalls\src</path-element>
       <path-element>C:\Program Files (x86)\FlashDevelop\Library\AS3\classes</path-element>
     </source-path>
     <library-path append="true">
-      <path-element>C:\Workspace\AS3\TrippinFalls\TrippinFalls\lib\starling\bin\starling.swc</path-element>
+      <path-element>C:\Workspace\AS3\TrippinFalls\lib\starling\bin\starling.swc</path-element>
     </library-path>
   </compiler>
   <file-specs>
-    <path-element>C:\Workspace\AS3\TrippinFalls\TrippinFalls\src\Main.as</path-element>
+    <path-element>C:\Workspace\AS3\TrippinFalls\src\Main.as</path-element>
   </file-specs>
   <default-background-color>#FFFFFF</default-background-color>
   <default-frame-rate>60</default-frame-rate>
