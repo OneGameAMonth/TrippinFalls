@@ -65,7 +65,7 @@ package objects
 			var leftFrames:Vector.<Texture> = atlas.getTextures("Side_Walk/000");
 			walkLeftMovie = new MovieClip(leftFrames, 7);
 			var lastP:int = walkLeftMovie.pivotX;
-			walkLeftMovie.pivotX = Math.ceil(walkLeftMovie.width/2);
+			walkLeftMovie.pivotX = Math.ceil(walkLeftMovie.width);
 			walkLeftMovie.scaleX = -1;
 			walkLeftMovie.loop = true;
 			
@@ -289,6 +289,7 @@ package objects
 			if (_isJumping == false)
 			{
 				var isStanding:Boolean = false;
+				if ( animationState == WALK_LEFT ) { standPoint.x -= Math.ceil(walkLeftMovie.width); }
 				for (var i:int = 0; i <  currentLevel.plats.length; i++ )
 				{
 					if ( currentLevel.plats[i].checkFloor(standPoint) ) { isStanding = true; }
