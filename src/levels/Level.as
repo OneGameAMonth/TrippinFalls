@@ -1,6 +1,7 @@
 package levels
 {
 	import starling.display.Sprite;
+	import objects.FreezeCounterUI;
 	import objects.Player;
 	import objects.Platform;
 	import objects.Layouts;
@@ -11,6 +12,8 @@ package levels
 		protected var levelLength:int;
 		public var plats:Vector.<Platform> = new Vector.<Platform>;
 		public var gameStage:Game;
+		public var counter:FreezeCounterUI;
+		public var freezes:int;
 		
 		public function Level() 
 		{

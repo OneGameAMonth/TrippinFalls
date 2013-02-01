@@ -130,7 +130,7 @@ package objects
 			
 			currentLevel = cLevel;
 			
-			_speed = 5;
+			_speed = 3;
 			_jumpVelocity = -5;
 			_jumpHeight = 0;
 			_maxJumpHeight = 32;
@@ -193,6 +193,9 @@ package objects
 				case 68:
 					_arrowKeys["right"] = true;
 					break;
+				case 69:
+					_arrowKeys["freeze"] = true;
+					break;
 				case 32:
 					jump();
 					break
@@ -233,6 +236,9 @@ package objects
 						newAnimationState = 7;
 					}
 					break;
+				case 69:
+					_arrowKeys["freeze"] = false;
+					break;
 			}
 		}
 		
@@ -241,6 +247,7 @@ package objects
 			
 			if (_isDying == false)
 			{
+				
 				var move:Boolean = true;
 				for (var i:int = 0; i < currentLevel.plats.length; i++ )
 				{
@@ -248,6 +255,9 @@ package objects
 					if ( currentLevel.plats[i].checkObstacleCollision(standPoint) == 2 ) { checkForGoal(); }
 				}
 				if (move) { lastPos[0] = this.x; lastPos[1] = this.y; }
+				if (_arrowKeys["freeze"] == true) {
+					if( currentLevel.counter.getFreezes() > 0){ freezeFloor(); currentLevel.counter.decrement()}
+				}
 				if (_arrowKeys["up"] == true && _arrowKeys["down"] == false && move)
 				{
 					this.y -= _speed;
@@ -296,8 +306,10 @@ package objects
 		{
 			standRect.x = this.x;
 			standRect.y = this.y + 32;
-			standPoint.x = (standRect.x + (standRect.x + standRect.width)) / 2; 
-			standPoint.y = (standRect.y + (standRect.y + standRect.height)) / 2;
+			//standPoint.x = (standRect.x + (standRect.x + standRect.width)) / 2; 
+			//standPoint.y = (standRect.y + (standRect.y + standRect.height)) / 2;
+			standPoint.x = standRect.x + (standRect.width);
+			standPoint.y = ( standRect.y + (standRect.height * .75) );
 		}
 		
 		private function jump():void
@@ -340,7 +352,6 @@ package objects
 			if (_isJumping == false)
 			{
 				var isStanding:Boolean = false;
-				if ( animationState == WALK_LEFT ) { standPoint.x -= Math.ceil(walkLeftMovie.width); }
 				for (var i:int = 0; i <  currentLevel.plats.length; i++ )
 				{
 					if ( currentLevel.plats[i].checkFloor(standPoint) ) { isStanding = true; }
@@ -358,6 +369,14 @@ package objects
 			}
 		}
 		
+		private function freezeFloor():void
+		{
+			for (var i:int = 0; i <  currentLevel.plats.length; i++ )
+				{
+					if ( currentLevel.plats[i].checkFloor(standPoint) ) { currentLevel.plats[i].freeze("player"); }
+				}
+		}
+		
 		private function checkForDeath():void
 		{
 			if (_isDying == true)
@@ -365,6 +384,11 @@ package objects
 				//newAnimationState = FALLING;
 				this.x = _startX;
 				this.y = _startY;
+				currentLevel.counter.setFreezes(currentLevel.freezes);
+				for (var i:int = 0; i <  currentLevel.plats.length; i++ )
+				{
+					if ( currentLevel.plats[i].frozenByPlayer ) { currentLevel.plats[i].frozen = false; }
+				}
 				_isDying = false;
 				updateStandRect();
 			}

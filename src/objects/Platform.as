@@ -34,6 +34,7 @@ package objects
 		public var checkOn:Boolean;
 		public var beat:int;
 		public var frozen:Boolean = false;
+		public var frozenByPlayer:Boolean = false;
 		
 		public function Platform(t:String, unitsRight:int, unitsDown:int, layout:Array, onis:Boolean = true, onBeat:int = 1 ) 
 		{
@@ -177,9 +178,10 @@ package objects
 			
 		}
 		
-		public function freeze():void
+		public function freeze(str:String = "default"):void
 		{
 			frozen = true;
+			if (str == "player") { frozenByPlayer = true; }
 		}
 	}
 

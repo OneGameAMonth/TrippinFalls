@@ -20,8 +20,8 @@ package objects
 		public function GameTimer(timerLength:int, gameStage:Game) 
 		{
 			game = gameStage;
-			_xLoc = 1200;
-			_yLoc = 20;
+			_xLoc = 100;
+			_yLoc = 50;
 			_endTimer = _startTimer + timerLength;
 			_textTimer = new TextField(_xLoc, _yLoc , "", "Arial", 16, Color.RED, true);
 			//TODO: Change to White when background is black
@@ -36,7 +36,7 @@ package objects
 		private function updateTimer():void
 		{
 			var timeRemaining:String = parseTimeRemaining();
-			_textTimer.text = timeRemaining;
+			_textTimer.text = "Time: " + timeRemaining;
 		}
 		
 		private function parseTimeRemaining():String

@@ -2,7 +2,7 @@
 <data version="1.0">
     <struct type="Settings">
         <key>fileFormatVersion</key>
-        <int>0</int>
+        <int>1</int>
         <key>variation</key>
         <string>main</string>
         <key>verbose</key>
@@ -171,6 +171,11 @@
             <filename>pngs/player.png</filename>
             <filename>pngs/refrigerator.png</filename>
             <filename>pngs/sink.png</filename>
+            <filename>../../../../../Users/zel/Dropbox/Workspace/Flash/TrippinFalls/new PNGS/winscreen.png</filename>
+            <filename>../../../../../Users/zel/Dropbox/Workspace/Flash/TrippinFalls/new PNGS/controls.png</filename>
+            <filename>../../../../../Users/zel/Dropbox/Workspace/Flash/TrippinFalls/new PNGS/losescreen.png</filename>
+            <filename>../../../../../Users/zel/Dropbox/Workspace/Flash/TrippinFalls/new PNGS/startgame.png</filename>
+            <filename>../../../../../Users/zel/Dropbox/Workspace/Flash/TrippinFalls/new PNGS/titlescreen.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

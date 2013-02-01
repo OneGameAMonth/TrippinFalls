@@ -46,12 +46,18 @@ package objects
 								  [1, 1, 1, 1],
 								  [1, 1, 1, 1]
 								];
+			public var bigL2:Array = [
+								  [0, 0, 1, 1],
+								  [0, 0, 1, 1],
+								  [1, 1, 1, 1],
+								  [1, 1, 1, 1]
+								];
 			public var backwardsBigL:Array = [
 								  [1, 1, 1, 1],
 								  [1, 1, 1, 1],
 								  [0, 0, 1, 1],
 								  [0, 0, 1, 1]
-								];					
+								];				
 			public var checkered:Array = [ 
 								  [1, 0, 1, 0],
 								  [0, 1, 0, 1],

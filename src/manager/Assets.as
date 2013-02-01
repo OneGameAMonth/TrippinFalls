@@ -1,11 +1,14 @@
 package manager{
 	
 	import flash.display.Bitmap;
+	import flash.display.Loader;
 	import flash.media.Sound;
 	import flash.media.Sound;
 	import flash.media.SoundChannel;
+	import flash.net.URLRequest;
 	import flash.utils.ByteArray;
 	import flash.utils.Dictionary;
+	import starling.display.Image;
 	
 	import starling.text.BitmapFont;
 	import starling.text.TextField;
@@ -25,6 +28,8 @@ package manager{
 		
 		public static var background:Sound = new snd() as Sound; 
         public static var sndChannel:SoundChannel;
+		
+		public static var titleBackground:Image;
 		
 		private static var _textures:Dictionary = new Dictionary();
 		private static var _textureAtlas:TextureAtlas;
@@ -64,12 +69,31 @@ package manager{
 		
 		public static function playBackground():void
 		{
-			sndChannel = background.play();
+			sndChannel = background.play(0, 9999);
 		}
 		
 		public static function stopBackground():void
 		{
 			sndChannel.stop();
 		}
+		
+		/*public static function loadImage(str:String):void
+		{
+			var loader:Loader = new Loader();
+
+			// load the texture
+			loader.load ( new URLRequest (str) );
+
+			// when texture is loaded
+			loader.contentLoaderInfo.addEventListener (, onComplete );
+		}
+		function onComplete ( e : Event ):void
+		{
+			// grab the loaded bitmap
+			var loadedBitmap:Bitmap = e.currentTarget.loader.content as Bitmap;
+
+			// create a texture from the loaded bitmap
+			var texture:Texture = Texture.fromBitmap ( loadedBitmap )
+		}*/
 	}
 }
