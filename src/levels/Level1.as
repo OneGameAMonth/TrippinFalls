@@ -40,7 +40,8 @@ package levels
 			
 			initPlatforms();
 			freezes = 1;
-			var timer:GameTimer = new GameTimer(13000, game);
+			
+			var timer:GameTimer = new GameTimer(100000, game);
 			this.addChild(timer);
 			
 			counter = new FreezeCounterUI(freezes);
