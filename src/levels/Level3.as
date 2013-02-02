@@ -38,6 +38,7 @@ package levels
 			
 			initPlatforms();
 			
+			freezes = 0;
 			var timer:GameTimer = new GameTimer(100000, game);
 			this.addChild(timer);
 			

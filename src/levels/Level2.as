@@ -27,7 +27,7 @@ package levels
 			plats[3] = new Platform("carpet", 4, 5, layouts.backwardsBigL, true, 0);
 			plats[4] = new Platform("carpet", 4, 9, layouts.bigRow, false, 1);
 			plats[5] = new Platform("carpet", 3, 10, layouts.column, true, 0);
-			plats[6] = new Platform("carpet", 4, 13, layouts.bigL, true, 0);
+			plats[6] = new Platform("carpet", 4, 13, layouts.bigL, false, 1);
 			plats[7] = new Platform("carpet", 8, 16, layouts.row, true, 0);
 			plats[8] = new Platform("carpet", 11, 14, layouts.bigRow, false, 1);
 			plats[9] = new Platform("carpet", 15, 11, layouts.column, true, 0);
@@ -46,6 +46,7 @@ package levels
 			
 			initPlatforms();
 			
+			freezes = 1;
 			var timer:GameTimer = new GameTimer(100000, game);
 			this.addChild(timer);
 			

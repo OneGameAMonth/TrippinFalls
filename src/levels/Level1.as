@@ -32,7 +32,7 @@ package levels
 			plats[8] = new Platform("tile", 14, 12, layouts.bigRow, false, 1);
 			plats[9] = new Platform("tile", 18, 12, layouts.bigRow, false, 1);
 			plats[10] = new Platform("tile", 20, 8, layouts.bigColumn, false, 1);
-			plats[11] = new Platform("tile", 18, 6, layouts.bigColumn, false, 1);
+			plats[11] = new Platform("tile", 18, 6, layouts.bigColumn, true, 0);
 			plats[12] = new Platform("tile", 18, 2, layouts.bigColumn, false, 1);
 			plats[13] = new Platform("tile", 20, 0, layouts.bigSquare, true, 1);
 			plats[13].freeze();

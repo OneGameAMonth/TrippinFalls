@@ -51,10 +51,10 @@ package  {
 		public function beatTimer(e:starling.events.Event):void
 		{
 			var elapsedTime:int = getTimer() - startTime;
-			var modTime:int = elapsedTime % 1000;
-			var thirdTime:int = elapsedTime % 1666;
+			var modTime:int = (elapsedTime + 333) % 1000;
+			var thirdTime:int = (elapsedTime + 666) % 1000;
 			if ( modTime < lastMod ) { beatSwitcher.flipPlats("in"); }
-			//if ( thirdTime < lastThird ) { beatSwitcher.flipPlats("out"); }
+			if ( thirdTime < lastThird ) { beatSwitcher.flipPlats("out"); }
 			lastMod = modTime;
 			lastThird = thirdTime;
 		}
