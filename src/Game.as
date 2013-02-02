@@ -40,6 +40,8 @@ package  {
 		
 		public var titleBG:Image;
 		public var controlsImg:Image;
+		public var loseBG:Image;
+		public var winBG:Image;
 		
 		public function Game()
 		{
@@ -50,8 +52,9 @@ package  {
 		{
 			var elapsedTime:int = getTimer() - startTime;
 			var modTime:int = elapsedTime % 1000;
-			var thirdTime:int = elapsedTime % 333;
-			if ( modTime < lastMod ) { beatSwitcher.flipPlats(); }
+			var thirdTime:int = elapsedTime % 1666;
+			if ( modTime < lastMod ) { beatSwitcher.flipPlats("in"); }
+			//if ( thirdTime < lastThird ) { beatSwitcher.flipPlats("out"); }
 			lastMod = modTime;
 			lastThird = thirdTime;
 		}
@@ -74,16 +77,32 @@ package  {
 		private function titleScreen():void
 		{
 			var atlas:TextureAtlas = Assets.fetchTextureAtlas();
-			var title:Texture = atlas.getTexture("titlescreen");
-			titleBG = new Image(title);
-			var controls:Texture = atlas.getTexture("controls");
-			controlsImg = new Image(controls);
+			
+			titleBG = new Image(atlas.getTexture("titlescreen"));
+			controlsImg = new Image(atlas.getTexture("controls"));
+			loseBG = new Image(atlas.getTexture("losescreen"));
+			winBG = new Image(atlas.getTexture("winscreen"));
+			
 			controlsImg.x = 215;
 			controlsImg.y = 316;
 			addChild(titleBG);
 			addChild(controlsImg);
 			Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, checkKeys);
 			//startLevel();
+		}
+		
+		public function loseScreen():void 
+		{
+			addChild(loseBG);
+			//TODO: Allow player to restart
+			//Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, checkKeys);
+		}
+		
+		public function winScreen():void 
+		{
+			addChild(winBG);
+			//TODO: Allow player to restart
+			//Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, checkKeys);
 		}
 		
 		private function checkKeys(e:KeyboardEvent):void
@@ -111,6 +130,7 @@ package  {
 		{
 			removeChild(allLevels[levelIndex]);
 			levelIndex++;
+			if (levelIndex == allLevels.length) { winScreen(); }
 			trace(levelIndex + " WHOA" );
 			startLevel();
 		}

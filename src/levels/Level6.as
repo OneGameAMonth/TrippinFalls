@@ -1,9 +1,12 @@
 package levels 
 {
 	import objects.GameTimer;
+	import objects.FreezeCounterUI;
 	import objects.Player;
 	import objects.Platform;
 	import objects.Layouts;
+	import starling.text.TextField;
+	import starling.utils.Color;
 	
 	public class Level6 extends Level
 	{
@@ -19,7 +22,7 @@ package levels
 			plats[0] = new Platform("tile", 24, 3, layouts.column, true, 0 );
 			plats[1] = new Platform("tile", 21, 1, layouts.bigRow, false, 1 );
 			plats[2] = new Platform("tile", 21, 3, layouts.column, false, 1 );
-			plats[3] = new Platform("tile", 18, 7, layouts.bigColumn, true, 0);
+			plats[3] = new Platform("tile", 18, 7, layouts.bigRow, true, 0);
 			plats[4] = new Platform("tile", 14, 4, layouts.backwardsBigL, false, 1);
 			plats[5] = new Platform("tile", 13, 1, layouts.column, false, 1);
 			plats[6] = new Platform("tile", 9, 0, layouts.bigRow, true, 0);
@@ -34,14 +37,27 @@ package levels
 			plats[15] = new Platform("tile", 14, 13, layouts.bigSquare, false, 1);
 			plats[16] = new Platform("tile", 20, 13, layouts.bigSquare, false, 1);
 			plats[17] = new Platform("tile", 24, 10, layouts.column, false, 1);
-			
+			plats[18] = new Platform("tile", 3, 12, layouts.bigColumn, false, 1);
+			plats[19] = new Platform("tile", 0, 12, layouts.mediumSquare, true, 0);
+			plats[19].freeze();
 			//last platform added does not appear
-			plats[3].addObstacle("dresser", 0, 0, true);
+			plats[19].addObstacle("dresser", 0, 0, true);
 			
 			initPlatforms();
 			
-			var timer:GameTimer = new GameTimer(13000, game);
+			var timer:GameTimer = new GameTimer(100000, game);
 			this.addChild(timer);
+			
+			counter = new FreezeCounterUI(freezes);
+			this.addChild(counter);
+			
+			var levelText:TextField = new TextField(80, 50 , "Level: 6", "Arial", 16, Color.RED, true);
+			levelText.x = 200;
+			this.addChild(levelText);
+			
+			var goalText:TextField = new TextField(270, 50 , "Goal: Get water from the fridge.", "Arial", 16, Color.RED, true);
+			goalText.x = 280;
+			this.addChild(goalText);
 			
 			var player:Player = new Player(0,32, this);
 			this.addChild(player);

@@ -52,6 +52,12 @@ package objects
 								  [1, 1, 1, 1],
 								  [1, 1, 1, 1]
 								];
+			public var bigL3:Array = [
+								  [1, 1, 1, 1],
+								  [1, 1, 1, 1],
+								  [1, 1, 0, 0],
+								  [1, 1, 0, 0]
+								];
 			public var backwardsBigL:Array = [
 								  [1, 1, 1, 1],
 								  [1, 1, 1, 1],

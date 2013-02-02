@@ -163,7 +163,7 @@ package objects
 			applyJumpForce();
 			checkFloor();
 			checkForDeath();
-			changeAnimation();
+			if(_isJumping == false){ changeAnimation(); }
 		}
 		
 		private function changeAnimation():void

@@ -20,7 +20,7 @@ package objects
 			
 		}
 		
-		public function flipPlats():void
+		public function flipPlats(signal:String):void
 		{
 			currentBeat++;
 			for (var i:int = 0; i <  game.allLevels[game.levelIndex].plats.length; i++ )

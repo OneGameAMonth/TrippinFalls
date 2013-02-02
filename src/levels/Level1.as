@@ -5,6 +5,8 @@ package levels
 	import objects.Player;
 	import objects.Platform;
 	import objects.Layouts;
+	import starling.text.TextField;
+	import starling.utils.Color;
 	
 	public class Level1 extends Level
 	{
@@ -46,6 +48,14 @@ package levels
 			
 			counter = new FreezeCounterUI(freezes);
 			this.addChild(counter);
+			
+			var levelText:TextField = new TextField(80, 50 , "Level: 1", "Arial", 16, Color.RED, true);
+			levelText.x = 200;
+			this.addChild(levelText);
+			
+			var goalText:TextField = new TextField(270, 50 , "Goal: Get water from the fridge.", "Arial", 16, Color.RED, true);
+			goalText.x = 280;
+			this.addChild(goalText);
 			
 			var player:Player = new Player(0,536, this);
 			this.addChild(player);

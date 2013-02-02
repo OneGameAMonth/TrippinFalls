@@ -44,7 +44,7 @@ package objects
 			var milliseconds:int = _endTimer - getTimer();
 			if (milliseconds <= 0)
 			{
-				game.restartGame();
+				game.loseScreen();
 			}
 			var minutes:int = milliseconds / (1000 * 60);
 			var seconds:int = (milliseconds % (1000 * 60)) / 1000;

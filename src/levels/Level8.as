@@ -1,6 +1,7 @@
 package levels 
 {
 	import objects.GameTimer;
+	import objects.FreezeCounterUI;
 	import objects.Player;
 	import objects.Platform;
 	import objects.Layouts;
@@ -42,6 +43,9 @@ package levels
 			
 			var timer:GameTimer = new GameTimer(13000, game);
 			this.addChild(timer);
+			
+			counter = new FreezeCounterUI(freezes);
+			this.addChild(counter);
 			
 			var player:Player = new Player(0,32, this);
 			this.addChild(player);
