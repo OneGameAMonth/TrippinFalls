@@ -258,7 +258,7 @@ package objects
 				}
 				if (move) { lastPos[0] = this.x; lastPos[1] = this.y; }
 				if (_arrowKeys["freeze"] == true) {
-					if( currentLevel.counter.getFreezes() > 0){ freezeFloor(); currentLevel.counter.decrement()}
+					if( currentLevel.counter.getFreezes() > 0){ freezeFloor();}
 				}
 				if (_arrowKeys["up"] == true && _arrowKeys["down"] == false && move)
 				{
@@ -375,7 +375,10 @@ package objects
 		{
 			for (var i:int = 0; i <  currentLevel.plats.length; i++ )
 				{
-					if ( currentLevel.plats[i].checkFloor(standPoint) ) { currentLevel.plats[i].freeze("player"); }
+					if ( currentLevel.plats[i].checkFloor(standPoint) ) 
+					{ 
+						if ( currentLevel.plats[i].freeze("player") == true ) { currentLevel.counter.decrement();  } 
+					}
 				}
 		}
 		

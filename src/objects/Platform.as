@@ -178,10 +178,16 @@ package objects
 			
 		}
 		
-		public function freeze(str:String = "default"):void
+		public function freeze(str:String = "default"):Boolean
 		{
-			frozen = true;
-			if (str == "player") { frozenByPlayer = true; }
+			var didFreeze:Boolean = false;
+			if (!frozen)
+			{
+				didFreeze = true;
+				frozen = true;
+				if (str == "player") { frozenByPlayer = true; }
+			}
+			return didFreeze;
 		}
 	}
 

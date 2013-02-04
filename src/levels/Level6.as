@@ -40,6 +40,8 @@ package levels
 			plats[18] = new Platform("tile", 3, 12, layouts.bigColumn, false, 1);
 			plats[19] = new Platform("tile", 0, 12, layouts.mediumSquare, true, 0);
 			plats[19].freeze();
+			plats[20] = new Platform("tile", 9, 7, layouts.mediumSquare, true, 0);
+			plats[20].freeze();
 			//last platform added does not appear
 			plats[19].addObstacle("dresser", 0, 0, true);
 			
@@ -59,7 +61,7 @@ package levels
 			goalText.x = 280;
 			this.addChild(goalText);
 			
-			var player:Player = new Player(0,32, this);
+			var player:Player = new Player(9*32,(7*32)+56, this);
 			this.addChild(player);
 		}
 	}

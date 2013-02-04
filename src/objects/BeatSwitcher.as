@@ -22,18 +22,6 @@ package objects
 		
 		public function flipPlats(signal:String):void
 		{
-			/*currentBeat++;
-			for (var i:int = 0; i <  game.allLevels[game.levelIndex].plats.length; i++ )
-			{
-				if (game.allLevels[game.levelIndex].plats[i].beat == currentBeat%beatsPerCycle) { 
-					game.allLevels[game.levelIndex].plats[i].turnOn();
-				}
-				else { game.allLevels[game.levelIndex].plats[i].turnOff(); }
-				if (game.allLevels[game.levelIndex].plats[i].beat == (currentBeat+1)%beatsPerCycle) { 
-					game.allLevels[game.levelIndex].plats[i].hintIn();
-				}
-				game.allLevels[game.levelIndex].plats[i].obstacleOpacityMatch();
-			}*/
 			if (signal == "in")
 			{
 				currentBeat++;
@@ -47,7 +35,7 @@ package objects
 			}
 			if (signal == "out")
 			{
-				for (var i:int = 0; i <  game.allLevels[game.levelIndex].plats.length; i++ )
+				for (i = 0; i <  game.allLevels[game.levelIndex].plats.length; i++ )
 				{	
 					if (game.allLevels[game.levelIndex].plats[i].beat != currentBeat % beatsPerCycle) { 
 						game.allLevels[game.levelIndex].plats[i].turnOff();

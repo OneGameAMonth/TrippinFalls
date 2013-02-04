@@ -67,8 +67,8 @@ package  {
 			allLevels[3] = new Level4;
 			allLevels[4] = new Level5;
 			allLevels[5] = new Level6;
-			allLevels[6] = new Level7;
-			allLevels[7] = new Level8;
+			//allLevels[6] = new Level7;
+			//allLevels[7] = new Level8;
 			
 			titleScreen();
 			
