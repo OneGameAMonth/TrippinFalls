@@ -29,7 +29,7 @@ package levels
 			plats[7] = new Platform("tile", 5, 0, layouts.row, false, 1);
 			plats[8] = new Platform("tile", 1, 0, layouts.bigRow, false, 1);
 			plats[9] = new Platform("tile", 0, 2, layouts.bigL, false, 1);
-			plats[10] = new Platform("tile", 5, 4, layouts.checkered, false, 1);
+			plats[10] = new Platform("tile", 5, 4, layouts.checkered, true, 0);
 			plats[11] = new Platform("tile", 5, 9, layouts.checkered, false, 1);
 			plats[12] = new Platform("tile", 3, 12, layouts.bigColumn, false, 1);
 			plats[13] = new Platform("tile", 3, 16, layouts.row, false, 1);

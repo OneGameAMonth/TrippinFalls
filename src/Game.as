@@ -61,7 +61,7 @@ package  {
 		
 		private function initGame():void
 		{
-			allLevels[0] = new Level1;
+			allLevels[0] = new Level6;
 			allLevels[1] = new Level2;
 			allLevels[2] = new Level3;
 			allLevels[3] = new Level4;
